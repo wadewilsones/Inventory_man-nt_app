@@ -11,7 +11,7 @@
 <?import javafx.scene.control.skin.TableHeaderRow?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="gui.mainform.MainForm"
+          fx:controller="gui.mainform.MainForm_controller"
           prefHeight="700.0" prefWidth="1200.0"
           >
     <stylesheets>
@@ -36,8 +36,8 @@
                             </columns>
                         </TableView>
                         <HBox spacing="10" alignment="CENTER_LEFT">
-                            <Button>Add</Button>
-                            <Button>Modify</Button>
+                            <Button fx:id="addPartBtn" onMouseClicked="#handleAddPartClick">Add</Button>
+                            <Button fx:id="modifyPartBtn" onMouseClicked="#handleModifyPartClick">Modify</Button>
                             <Button>Delete</Button>
                         </HBox>
                     </FlowPane>

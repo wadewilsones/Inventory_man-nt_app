@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c4e439f-fbb8-485b-8479-069aed026fbe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/gui/addingForms/AddPartFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gui/addingForms/AddProductForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/addProduct.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/addingForms/AddPartForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/addingForms/AddPartForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/addingForms/AddPartFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/addingForms/AddPartFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/mainform/MainForm_controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/mainform/MainForm_controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/addPart.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/addPart.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/main_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/main_form.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

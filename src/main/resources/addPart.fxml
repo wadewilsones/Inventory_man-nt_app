@@ -17,9 +17,18 @@
     </stylesheets>
 
     <HBox GridPane.rowIndex="1" spacing="40" styleClass="AddPartFormHeader">
-       <Label styleClass="Table_Headers">Add Part</Label>
-        <RadioButton>In-House</RadioButton>
-        <RadioButton fx:id= "OutsourcedRBtn" onMouseClicked="#HandleRadioButtonChange">Outsourced</RadioButton>
+       <Text styleClass="Table_Headers" fx:id="HeadingForPart"></Text>
+            <RadioButton onMouseClicked="#HandleRadioInHouseButtonChange" text="In-House">
+                <toggleGroup>
+                    <ToggleGroup fx:id="group"/>
+                </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id= "OutsourcedRBtn" onMouseClicked="#HandleRadioOutButtonChange" text="Outsourced">
+                <toggleGroup>
+                    <fx:reference source="group"/>
+                </toggleGroup>
+            </RadioButton>
+
     </HBox>
 
     <FlowPane GridPane.rowIndex="2" styleClass="AddPartForm">
