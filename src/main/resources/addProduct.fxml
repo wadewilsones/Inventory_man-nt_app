@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="gui.addingForms.AddProductForm"
+          prefHeight="700.0" prefWidth="1200.0">
+    <stylesheets>
+        <String fx:value="style.css" />
+    </stylesheets>
+
+    <HBox GridPane.rowIndex="1" spacing="40" styleClass="AddPartFormHeader" GridPane.columnIndex="1">
+        <Label styleClass="Table_Headers">Add Product</Label>
+        <TextField promptText="Search by Part ID"></TextField>
+    </HBox>
+
+    <FlowPane GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="AddPartForm">
+        <HBox styleClass="AddPartFormField">
+            <Label>ID</Label>
+            <TextField promptText="Auto Gen-Disabled" ></TextField>
+        </HBox>
+        <HBox styleClass="AddPartFormField">
+            <Label>Name</Label>
+            <TextField ></TextField>
+        </HBox>
+        <HBox styleClass="AddPartFormField">
+            <Label>Inv</Label>
+            <TextField ></TextField>
+        </HBox>
+        <HBox styleClass="AddPartFormField">
+            <Label>Price/Cost</Label>
+            <TextField ></TextField>
+        </HBox>
+        <HBox styleClass="AddPartFormField">
+            <Label>Max</Label>
+            <TextField></TextField>
+            <Label fx:id="fieldMinimum">Min</Label>
+            <TextField></TextField>
+        </HBox>
+    </FlowPane>
+
+    <FlowPane GridPane.rowIndex="2" GridPane.columnIndex="6">
+        <TableView  styleClass="MainTables" >
+            <columns>
+                <TableColumn text="Part ID" prefWidth = "100">
+                </TableColumn>
+                <TableColumn text="Part Name" prefWidth = "120"></TableColumn>
+                <TableColumn text="Inventory level" prefWidth = "130"></TableColumn>
+                <TableColumn text="Price/Cost per Unit" prefWidth = "150"></TableColumn>
+            </columns>
+        </TableView>
+        <Button>Add</Button>
+        <TableView  styleClass="MainTables" >
+            <columns>
+                <TableColumn text="Part ID" prefWidth = "100">
+                </TableColumn>
+                <TableColumn text="Part Name" prefWidth = "120"></TableColumn>
+                <TableColumn text="Inventory level" prefWidth = "130"></TableColumn>
+                <TableColumn text="Price/Cost per Unit" prefWidth = "150"></TableColumn>
+            </columns>
+        </TableView>
+        <Button>Remove Associated Part</Button>
+        <HBox spacing="20" GridPane.rowIndex="3" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+            <Button>Save</Button>
+            <Button>Cancel</Button>
+        </HBox>
+    </FlowPane>
+
+
+</GridPane>

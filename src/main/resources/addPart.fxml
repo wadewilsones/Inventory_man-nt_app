@@ -7,9 +7,10 @@
 <?import javafx.scene.layout.*?>
 
 <?import com.sun.javafx.webkit.theme.RenderThemeImpl.FormMenuList?>
+<?import javafx.scene.text.Text?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="gui.addingForms.AddPartForm"
+          fx:controller="gui.addingForms.AddPartFormController"
           prefHeight="700.0" prefWidth="800.0">
     <stylesheets>
         <String fx:value="style.css" />
@@ -18,7 +19,7 @@
     <HBox GridPane.rowIndex="1" spacing="40" styleClass="AddPartFormHeader">
        <Label styleClass="Table_Headers">Add Part</Label>
         <RadioButton>In-House</RadioButton>
-        <RadioButton>Outsourced</RadioButton>
+        <RadioButton fx:id= "OutsourcedRBtn" onMouseClicked="#HandleRadioButtonChange">Outsourced</RadioButton>
     </HBox>
 
     <FlowPane GridPane.rowIndex="2" styleClass="AddPartForm">
@@ -45,7 +46,7 @@
                 <TextField></TextField>
             </HBox>
             <HBox styleClass="AddPartFormField">
-                <Label fx:id="ChangingLabel"></Label>
+                <Text fx:id = "LabelData"></Text>
                 <TextField></TextField>
             </HBox>
 
