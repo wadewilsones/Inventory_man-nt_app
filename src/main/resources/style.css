@@ -1,0 +1,42 @@
+/*Main Screen*/
+
+GridPane{
+-fx-padding: 4em;
+}
+
+Button{
+-fx-font-size: 1em;
+}
+
+.Heading{
+  -fx-font-size: 1.4em;
+  -fx-font-weight:bold;
+  -fx-padding:1.2em 0;
+}
+
+.Table_Headers{
+  -fx-font-weight:bold;
+}
+
+/*Add Part Form*/
+
+.AddPartFormHeader{
+-fx-padding:2em 0;
+}
+
+.AddPartForm{
+
+-fx-padding:3em 0 ;
+}
+
+
+.AddPartFormField Label{
+-fx-padding: 0 5em 2em 0;
+
+}
+
+#fieldMinimum{
+-fx-padding:0 2em 0 2em;
+
+}
+
