@@ -14,10 +14,25 @@ Button{
   -fx-padding:1.2em 0;
 }
 
-.Table_Headers{
-  -fx-font-weight:bold;
+.Table_Container{
+  -fx-border-color: black;
+  -fx-padding: 2em;
+  -fx-border-radius: 2em;
 }
 
+.Table_Headers{
+  -fx-font-weight:bold;
+
+}
+
+.MainGroupBtns{
+-fx-padding: 1em 0;
+
+}
+
+.MainTable_Header{
+-fx-padding: 1em 0;
+}
 /*Add Part Form*/
 
 .AddPartFormHeader{
@@ -31,12 +46,22 @@ Button{
 
 
 .AddPartFormField Label{
--fx-padding: 0 5em 2em 0;
+-fx-padding: 0em 5em 2em 0;
 
 }
+
 
 #fieldMinimum{
 -fx-padding:0 2em 0 2em;
 
 }
 
+#IdField{
+-fx-fill-height:3em;
+}
+
+.Errors{
+-fx-font-size: 1.2em;
+-fx-fill: #df2935;
+
+}

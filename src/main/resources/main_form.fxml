@@ -12,7 +12,7 @@
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="gui.mainform.MainForm_controller"
-          prefHeight="700.0" prefWidth="1200.0"
+          prefHeight="700.0" prefWidth="1400.0"
           >
     <stylesheets>
         <String fx:value="style.css" />
@@ -22,28 +22,27 @@
             <FlowPane GridPane.rowIndex="2" >
                 <HBox spacing="50">
                     <FlowPane styleClass="Table_Container">
-                        <HBox spacing="290" alignment="CENTER">
+                        <HBox spacing="290" alignment="CENTER" styleClass="MainTable_Header">
                             <Label styleClass="Table_Headers">Parts</Label>
                             <TextField promptText="Search by Part ID"></TextField>
                         </HBox>
-                        <TableView  styleClass="MainTables" >
+                        <TableView  styleClass="MainTables" fx:id="PartTable">
                             <columns>
-                                <TableColumn text="Part ID" prefWidth = "100">
-                                </TableColumn>
-                                <TableColumn text="Part Name" prefWidth = "120"></TableColumn>
-                                <TableColumn text="Inventory level" prefWidth = "130"></TableColumn>
-                                <TableColumn text="Price/Cost per Unit" prefWidth = "150"></TableColumn>
+                                <TableColumn text="Part ID" fx:id="PartId" prefWidth = "100"></TableColumn>
+                                <TableColumn text="Part Name" prefWidth = "120" fx:id="PartName"></TableColumn>
+                                <TableColumn text="Inventory level" prefWidth = "130" fx:id="PartInv"></TableColumn>
+                                <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id="PartPrice"></TableColumn>
                             </columns>
                         </TableView>
-                        <HBox spacing="10" alignment="CENTER_LEFT">
+                        <HBox spacing="10" styleClass="MainGroupBtns">
                             <Button fx:id="addPartBtn" onMouseClicked="#handleAddPartClick">Add</Button>
                             <Button fx:id="modifyPartBtn" onMouseClicked="#handleModifyPartClick">Modify</Button>
                             <Button>Delete</Button>
                         </HBox>
                     </FlowPane>
 
-                    <FlowPane>
-                        <HBox spacing="260" alignment="CENTER">
+                    <FlowPane  styleClass="Table_Container">
+                        <HBox spacing="260" alignment="CENTER" styleClass="MainTable_Header">
                             <Label  styleClass="Table_Headers">Products</Label>
                             <TextField promptText="Search by Product ID"></TextField>
                         </HBox>
@@ -55,10 +54,11 @@
                             <TableColumn text="Inventory level" prefWidth = "130"></TableColumn>
                             <TableColumn text="Price/Cost per Unit" prefWidth = "150"></TableColumn>
                         </columns>
+
                     </TableView>
-                        <HBox spacing="10" alignment="CENTER_LEFT" >
-                            <Button>Add</Button>
-                            <Button>Modify</Button>
+                        <HBox spacing="10" styleClass="MainGroupBtns" >
+                            <Button fx:id="addProductBtn" onMouseClicked="#handleAddProductClick">Add</Button>
+                            <Button fx:id="modifyProductBtn" onMouseClicked="#handleModifyProductClick">Modify</Button>
                             <Button>Delete</Button>
                         </HBox>
                     </FlowPane>
@@ -68,7 +68,7 @@
 
 
 
-        <Button GridPane.rowIndex="4" GridPane.columnIndex="10">Exit</Button>
+        <Button GridPane.rowIndex="4" GridPane.columnIndex="5" onMouseClicked="#ExitClickHandle">Exit</Button>
     </children>
 
 </GridPane>

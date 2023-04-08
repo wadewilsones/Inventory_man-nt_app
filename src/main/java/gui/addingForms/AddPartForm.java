@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**RUNTIME or LOGICAL ERRORS didn't occur here.*/
 public class AddPartForm extends Application {
 
     public static void main(String[] args) {
@@ -14,17 +15,6 @@ public class AddPartForm extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        //Parent root = FXMLLoader.load(getClass().getResource("/addPart.fxml"));
-
-/**Loading FXML and setting Scene for UI*/
-
-/** REMOVE LATER
-
-        primaryStage.setTitle("Add Part");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-*/
 
     }
 }

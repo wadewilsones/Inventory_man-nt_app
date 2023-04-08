@@ -5,24 +5,24 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
+<?import javafx.scene.text.Text?>
 <GridPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gui.addingForms.AddProductForm"
+            fx:controller="gui.addingForms.AddProductFormController"
           prefHeight="700.0" prefWidth="1200.0">
     <stylesheets>
         <String fx:value="style.css" />
     </stylesheets>
 
     <HBox GridPane.rowIndex="1" spacing="40" styleClass="AddPartFormHeader" GridPane.columnIndex="1">
-        <Label styleClass="Table_Headers">Add Product</Label>
+        <Text styleClass="Table_Headers" fx:id ="HeadingForProduct"></Text>
         <TextField promptText="Search by Part ID"></TextField>
     </HBox>
 
     <FlowPane GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="AddPartForm">
         <HBox styleClass="AddPartFormField">
             <Label>ID</Label>
-            <TextField promptText="Auto Gen-Disabled" ></TextField>
+            <TextField promptText="Auto Gen-Disabled" disable="true" fx:id="GeneratedID"></TextField>
         </HBox>
         <HBox styleClass="AddPartFormField">
             <Label>Name</Label>
@@ -67,7 +67,7 @@
         <Button>Remove Associated Part</Button>
         <HBox spacing="20" GridPane.rowIndex="3" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
             <Button>Save</Button>
-            <Button>Cancel</Button>
+            <Button onMouseClicked="#handleCancelClick">Cancel</Button>
         </HBox>
     </FlowPane>
 

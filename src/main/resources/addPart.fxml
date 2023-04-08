@@ -17,8 +17,8 @@
     </stylesheets>
 
     <HBox GridPane.rowIndex="1" spacing="40" styleClass="AddPartFormHeader">
-       <Text styleClass="Table_Headers" fx:id="HeadingForPart"></Text>
-            <RadioButton onMouseClicked="#HandleRadioInHouseButtonChange" text="In-House">
+       <Text styleClass="Table_Headers" fx:id="HeadingForPart" ></Text>
+            <RadioButton onMouseClicked="#HandleRadioInHouseButtonChange" text="In-House" selected="true">
                 <toggleGroup>
                     <ToggleGroup fx:id="group"/>
                 </toggleGroup>
@@ -30,39 +30,40 @@
             </RadioButton>
 
     </HBox>
-
+    <Text fx:id = "ErrorHolder" styleClass="Errors"></Text>
     <FlowPane GridPane.rowIndex="2" styleClass="AddPartForm">
-            <HBox styleClass="AddPartFormField">
+
+            <HBox styleClass="AddPartFormField" id="#IdField">
                 <Label>ID</Label>
-                <TextField promptText="Auto Gen-Disabled" ></TextField>
+                <TextField promptText="Auto Gen-Disabled" fx:id="GeneratedID" disable="true"></TextField>
             </HBox>
             <HBox styleClass="AddPartFormField">
                 <Label>Name</Label>
-                <TextField ></TextField>
+                <TextField fx:id="name"></TextField>
             </HBox>
             <HBox styleClass="AddPartFormField">
                 <Label>Inv</Label>
-                <TextField ></TextField>
+                <TextField fx:id="inv"></TextField>
             </HBox>
-            <HBox styleClass="AddPartFormField">
+            <HBox styleClass="AddPartFormField" spacing="5">
                 <Label>Price/Cost</Label>
-                <TextField ></TextField>
+                <TextField fx:id="price"></TextField>
             </HBox>
             <HBox styleClass="AddPartFormField">
                 <Label>Max</Label>
-                <TextField></TextField>
+                <TextField fx:id="max"></TextField>
                 <Label fx:id="fieldMinimum">Min</Label>
-                <TextField></TextField>
+                <TextField fx:id="min"></TextField>
             </HBox>
-            <HBox styleClass="AddPartFormField">
+            <HBox styleClass="AddPartFormField" spacing="20">
                 <Text fx:id = "LabelData"></Text>
-                <TextField></TextField>
+                <TextField fx:id="additionalInfo"></TextField>
             </HBox>
 
     </FlowPane>
 
     <HBox spacing="20" GridPane.rowIndex="3" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
-        <Button>Save</Button>
-        <Button>Cancel</Button>
+        <Button onMouseClicked="#handleFormSubmission">Save</Button>
+        <Button onMouseClicked="#handleCancelClick">Cancel</Button>
     </HBox>
 </GridPane>

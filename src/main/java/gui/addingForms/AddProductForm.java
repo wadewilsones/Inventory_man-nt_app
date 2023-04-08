@@ -1,11 +1,14 @@
 package gui.addingForms;
 
+import gui.mainform.MainForm_controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**RUNTIME or LOGICAL ERRORS didn't occur here.*/
 public class AddProductForm extends Application {
 
     public static void main(String[] args) {
@@ -15,14 +18,6 @@ public class AddProductForm extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        Parent root = FXMLLoader.load(getClass().getResource("/addProduct.fxml"));
-
-/**Loading FXML and setting Scene for UI*/
-
-        primaryStage.setTitle("Add Product");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
 
     }
 }
