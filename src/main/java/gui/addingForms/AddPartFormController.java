@@ -111,17 +111,19 @@ public class AddPartFormController implements Initializable {
             int invConverted = Integer.parseInt(inv.getText());
             int minConverted = Integer.parseInt(min.getText());
             int maxConverted = Integer.parseInt(max.getText());
-            int additionalInfoConverted = Integer.parseInt(additionalInfo.getText());
 
             /*Check additional Info and create a part*/
-            if(additionalInfo.getText().equals("Machine ID")){
+            if(LabelData.getText().equals("Machine ID")){
+
+                int additionalInfoConverted = Integer.parseInt(additionalInfo.getText());
                 Part newPart = new InHouse(generatedIdValue, name.getText(), priceConverted,invConverted,minConverted,maxConverted,additionalInfoConverted);
                 Inventory.addPart(newPart);
 
             }
             else{
-                Part newPart = new Outsourced(generatedIdValue, name.getText(), priceConverted,invConverted,minConverted,maxConverted,additionalInfo.getText());
+                Part newPart = new Outsourced(generatedIdValue, name.getText(), priceConverted,invConverted,minConverted,maxConverted, additionalInfo.getText());
                 Inventory.addPart(newPart);
+
             }
 
             /*Close form after click*/

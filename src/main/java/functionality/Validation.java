@@ -1,7 +1,5 @@
 package functionality;
 
-import static java.lang.Double.parseDouble;
-
  public class Validation {
     private boolean isValid;
     private String ErrorMessage;

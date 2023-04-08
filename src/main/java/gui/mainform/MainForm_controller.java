@@ -36,9 +36,9 @@ public class MainForm_controller implements Initializable {
     @FXML
     private TableColumn<Part, String> PartName;
     @FXML
-    private TableColumn<Part, String> PartInv;
+    private TableColumn<Part, Integer> PartInv;
     @FXML
-    private TableColumn<Part, String> PartPrice;
+    private TableColumn<Part, Double> PartPrice;
 
     /** Getter for stage*/
     public static Stage getStage() {
@@ -125,6 +125,9 @@ public class MainForm_controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Populate Part table with Parts from Inventory
         PartTable.setItems(Inventory.getAllParts());
-        PartId.setCellValueFactory(data -> data.getValue().getId());
+        PartId.setCellValueFactory(data -> data.getValue().getIntId().asObject());
+        PartName.setCellValueFactory(data -> data.getValue().getStringName());
+        PartPrice.setCellValueFactory(data -> data.getValue().getDoublePropertyPrice().asObject());
+        PartInv.setCellValueFactory(data -> data.getValue().getIntStock().asObject());
     }
 }

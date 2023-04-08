@@ -1,5 +1,7 @@
 package functionality;
 
+import javafx.beans.property.*;
+
 abstract public class Part {
 
     private int id;
@@ -48,6 +50,31 @@ abstract public class Part {
     public int getId(){
         return this.id;
     }
+
+    /*Transform integer to Property to use for filling table rows*/
+    public IntegerProperty getIntId(){
+        IntegerProperty id = new SimpleIntegerProperty(this.id);
+        return id;
+    }
+
+    public StringProperty getStringName(){
+        StringProperty name = new SimpleStringProperty(this.name);
+        return name;
+    }
+
+    public DoubleProperty getDoublePropertyPrice(){
+        DoubleProperty price = new SimpleDoubleProperty(this.price);
+        return price;
+    }
+
+
+    public IntegerProperty getIntStock(){
+        IntegerProperty stock = new SimpleIntegerProperty(this.stock);
+        return stock;
+    }
+
+
+
     public String getName(){
         return this.name;
     }
