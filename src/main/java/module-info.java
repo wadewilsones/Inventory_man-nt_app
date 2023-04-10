@@ -7,5 +7,5 @@ module inventory.magnt {
     requires java.desktop;
 
     opens gui.mainform to javafx.fxml, javafx.graphics;
-    opens gui.addingForms to javafx.fxml, javafx.graphics;
+    opens gui.controllers to javafx.fxml, javafx.graphics;
 }

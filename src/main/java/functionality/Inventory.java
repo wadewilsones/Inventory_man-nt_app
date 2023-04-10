@@ -13,29 +13,44 @@ public class Inventory {
 
     /**Methods*/
 
+    static public ObservableList<Product> getAllProducts(){
+        return allProducts;
+    };
     static public void addPart(Part newPart){
         allParts.add(newPart);
-
     }
     static public void addProduct(Product newProduct){
         allProducts.add(newProduct);
     }
-
     static public ObservableList<Part> getAllParts(){
         return allParts;
     };
+    static public  void updatePart(int index, Part selectedPart){
+        System.out.println("New name:  "+  selectedPart.getName());
+        allParts.set(index-1, selectedPart);
+    }
+    static public boolean deletePart(Part selectedPart){
+        return allParts.remove(selectedPart);
+    };
+};
+
 
     /*
-    static public Part lookupPart(int partId)
-    static public  Product lookupProduct(int productId)
-    static public ObservableList<Part> lookupPart(String partName){};
-    static public  ObservableList<Product>lookupProduct(String productName);
-    static public  void updatePart(int index, Part selectedPart);
-    static public void updateProduct(int index, Product newProduct);
-    static public boolean deletePart(Part selectedPart);
-    static public  boolean deleteProduct(Product selectedProduct){};
 
-    static public ObservableList<Product> getAllProducts(){};
+
++ addProduct(newProduct:Product):void
++ lookupPart(partId:int):Part
++ lookupProduct(productId:int):Product
++ lookupPart(partName:String):ObservableList<Part>
++ lookupProduct(productName:String):ObservableList<Product>
++ updatePart(index:int, selectedPart:Part):void
++ updateProduct(index:int, newProduct:Product):void
+
++ deleteProduct(selectedProduct:Product):boolean
+
+
+
+
 
 */
-}
+

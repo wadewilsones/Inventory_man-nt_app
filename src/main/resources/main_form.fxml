@@ -19,6 +19,7 @@
     </stylesheets>
     <children>
             <Label GridPane.rowIndex="1" styleClass="Heading">Inventory management System</Label>
+        <Text fx:id = "ErrorHolder" styleClass="Errors"></Text>
             <FlowPane GridPane.rowIndex="2" >
                 <HBox spacing="50">
                     <FlowPane styleClass="Table_Container">
@@ -37,7 +38,7 @@
                         <HBox spacing="10" styleClass="MainGroupBtns">
                             <Button fx:id="addPartBtn" onMouseClicked="#handleAddPartClick">Add</Button>
                             <Button fx:id="modifyPartBtn" onMouseClicked="#handleModifyPartClick">Modify</Button>
-                            <Button>Delete</Button>
+                            <Button fx:id="deletePart" onMouseClicked="#handleDeletePart">Delete</Button>
                         </HBox>
                     </FlowPane>
 
@@ -59,7 +60,7 @@
                         <HBox spacing="10" styleClass="MainGroupBtns" >
                             <Button fx:id="addProductBtn" onMouseClicked="#handleAddProductClick">Add</Button>
                             <Button fx:id="modifyProductBtn" onMouseClicked="#handleModifyProductClick">Modify</Button>
-                            <Button>Delete</Button>
+                            <Button >Delete</Button>
                         </HBox>
                     </FlowPane>
                 </HBox>

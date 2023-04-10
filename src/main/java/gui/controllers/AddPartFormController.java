@@ -1,4 +1,4 @@
-package gui.addingForms;
+package gui.controllers;
 
 import functionality.*;
 
@@ -13,6 +13,9 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static functionality.Inventory.getAllParts;
+import static gui.mainform.MainForm_controller.*;
+
 
 /**To use variables values in FXML*/
 /**RUNTIME ERROR occurred when initialize function was empty,
@@ -23,8 +26,6 @@ public class AddPartFormController implements Initializable {
     @FXML
     private Text LabelData; // text for Machine ID/Company name
     @FXML
-    private Text HeadingForPart; // text for Heading in Add/Modify Form
-    @FXML
     public RadioButton OutsourcedRBtn; // used to switch between label text
     @FXML
     public TextField GeneratedID;
@@ -34,7 +35,6 @@ public class AddPartFormController implements Initializable {
     public Text ErrorHolder;
 
     /*Input fields*/
-
 
     @FXML
     public TextField name;
@@ -67,20 +67,11 @@ public class AddPartFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        LabelData.setText("Machine ID");
-        generatedIdValue += 1;
-        String convertedValue = Integer.toString(generatedIdValue);
-        GeneratedID.setText(convertedValue);
-
-        /** Setting value according to chosen Form (modify or add part)*/
-        if(MainForm_controller.getStage().getTitle().equals("Add Part")){
-            /**Set heading to Add*/
-            HeadingForPart.setText("Add Part");
-        }
-        else{
-            /**Set heading to Modify*/
-            HeadingForPart.setText("Modify Part");
-        }
+            LabelData.setText("Machine ID");
+            /**Generate ID*/
+            generatedIdValue += 1;
+            String convertedValue = Integer.toString(generatedIdValue);
+            GeneratedID.setText(convertedValue);
 
     }
 
@@ -99,7 +90,6 @@ public class AddPartFormController implements Initializable {
     }
 
     /**Adding a new Part*/
-
     public void handleFormSubmission(MouseEvent mouseEvent) {
 
         /*Get input and Validate it*/
@@ -116,14 +106,13 @@ public class AddPartFormController implements Initializable {
             if(LabelData.getText().equals("Machine ID")){
 
                 int additionalInfoConverted = Integer.parseInt(additionalInfo.getText());
-                Part newPart = new InHouse(generatedIdValue, name.getText(), priceConverted,invConverted,minConverted,maxConverted,additionalInfoConverted);
+                InHouse newPart = new InHouse(generatedIdValue, name.getText(), priceConverted,invConverted,minConverted,maxConverted,additionalInfoConverted);
                 Inventory.addPart(newPart);
 
             }
             else{
-                Part newPart = new Outsourced(generatedIdValue, name.getText(), priceConverted,invConverted,minConverted,maxConverted, additionalInfo.getText());
+                Outsourced newPart = new Outsourced(generatedIdValue, name.getText(), priceConverted,invConverted,minConverted,maxConverted, additionalInfo.getText());
                 Inventory.addPart(newPart);
-
             }
 
             /*Close form after click*/
@@ -136,4 +125,5 @@ public class AddPartFormController implements Initializable {
 
 
     }
+
 }

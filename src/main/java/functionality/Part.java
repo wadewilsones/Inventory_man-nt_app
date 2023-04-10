@@ -78,16 +78,16 @@ abstract public class Part {
     public String getName(){
         return this.name;
     }
-    public double getPrice(double price){
+    public double getPrice(){
         return this.price;
     }
-    public int getStock(int stock){
+    public int getStock(){
         return this.stock;
     }
-    public int getMin(int min){
+    public int getMin(){
         return this.min;
     }
-    public int getMax(int max){
+    public int getMax(){
         return this.max;
     }
 

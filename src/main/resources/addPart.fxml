@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Text?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="gui.addingForms.AddPartFormController"
+          fx:controller="gui.controllers.AddPartFormController"
           prefHeight="700.0" prefWidth="800.0">
     <stylesheets>
         <String fx:value="style.css" />

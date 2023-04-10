@@ -1,4 +1,4 @@
-package gui.addingForms;
+package gui.controllers;
 
 import gui.mainform.MainForm_controller;
 import javafx.fxml.FXML;
