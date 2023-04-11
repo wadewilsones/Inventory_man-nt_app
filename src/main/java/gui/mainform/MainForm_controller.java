@@ -1,29 +1,26 @@
 package gui.mainform;
 
-import functionality.InHouse;
+
 import functionality.Inventory;
-import functionality.Outsourced;
 import functionality.Part;
 import javafx.application.Platform;
-import javafx.beans.property.ReadOnlyIntegerProperty;
-import javafx.beans.property.ReadOnlyStringWrapper;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
-import javax.swing.*;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
 
 /**RUNTIME or LOGICAL ERRORS didn't occur here.*/
 public class MainForm_controller implements Initializable {
@@ -45,8 +42,47 @@ public class MainForm_controller implements Initializable {
     private TableColumn<Part, Double> PartPrice;
 
     @FXML
-    public Text ErrorHolder;
+    public Text ErrorHolder; //Hold errors
+    @FXML
+    public TextField SearchByIDField; // holds id
     public static Part selectedPart;
+
+    /**Handle search by Part ID*/
+
+    public void SearchByID(KeyEvent keyEvent) {
+        try{
+            if(keyEvent.getCode().toString().equals("ENTER")){
+                /**Is search by Index*/
+                if(SearchByIDField.getText().matches("[0-9]+")){
+                    // Assign new created List to table
+                    System.out.println(Integer.parseInt(SearchByIDField.getText()));
+                    Part LookedPart = Inventory.lookupPart(Integer.parseInt(SearchByIDField.getText())-1);
+                    System.out.println(LookedPart.getName());
+                    ObservableList<Part> matchingList = FXCollections.observableArrayList();
+                    matchingList.add(LookedPart);
+                    PartTable.setItems(matchingList);
+            }
+                else{
+                    /**Search by Name*/
+                    ObservableList<Part> matchingList = Inventory.lookupPart(SearchByIDField.getText());
+                    PartTable.setItems(matchingList);
+                }
+
+        }
+            else if(SearchByIDField.getText().equals("")){
+                PartTable.setItems(Inventory.getAllParts());
+            }
+        }
+        catch (Exception e){
+            if(SearchByIDField.getText().equals("")){
+                ErrorHolder.setText("ID/Name field is empty");
+            }
+            else if(Inventory.getAllParts().size() == 0){
+                ErrorHolder.setText("Table is empty!");
+
+        }
+    }
+    }
 
 
 

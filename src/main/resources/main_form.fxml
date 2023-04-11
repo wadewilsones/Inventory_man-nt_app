@@ -25,7 +25,7 @@
                     <FlowPane styleClass="Table_Container">
                         <HBox spacing="290" alignment="CENTER" styleClass="MainTable_Header">
                             <Label styleClass="Table_Headers">Parts</Label>
-                            <TextField promptText="Search by Part ID"></TextField>
+                            <TextField promptText="Press Enter to search by Part ID/Name" fx:id = "SearchByIDField" onKeyPressed="#SearchByID"></TextField>
                         </HBox>
                         <TableView  styleClass="MainTables" fx:id="PartTable">
                             <columns>
@@ -45,7 +45,7 @@
                     <FlowPane  styleClass="Table_Container">
                         <HBox spacing="260" alignment="CENTER" styleClass="MainTable_Header">
                             <Label  styleClass="Table_Headers">Products</Label>
-                            <TextField promptText="Search by Product ID"></TextField>
+                            <TextField promptText="Press Enter to search by Product ID/Name"></TextField>
                         </HBox>
                     <TableView  styleClass="MainTables" >
                         <columns>
