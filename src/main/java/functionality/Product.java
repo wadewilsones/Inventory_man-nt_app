@@ -1,5 +1,6 @@
 package functionality;
 
+import javafx.beans.property.*;
 import javafx.collections.ObservableList;
 
 public class Product {
@@ -80,5 +81,26 @@ public class Product {
     }
 */
 
+    /*Transform integer to Property to use for filling table rows*/
+    public IntegerProperty getIntId(){
+        IntegerProperty id = new SimpleIntegerProperty(this.id);
+        return id;
+    }
+
+    public StringProperty getStringName(){
+        StringProperty name = new SimpleStringProperty(this.name);
+        return name;
+    }
+
+    public DoubleProperty getDoublePropertyPrice(){
+        DoubleProperty price = new SimpleDoubleProperty(this.price);
+        return price;
+    }
+
+
+    public IntegerProperty getIntStock(){
+        IntegerProperty stock = new SimpleIntegerProperty(this.stock);
+        return stock;
+    }
 
 }

@@ -15,10 +15,10 @@
     </stylesheets>
 
     <HBox GridPane.rowIndex="1" spacing="40" styleClass="AddPartFormHeader" GridPane.columnIndex="1">
-        <Text styleClass="Table_Headers" fx:id ="HeadingForProduct"></Text>
-        <TextField promptText="Search by Part ID"></TextField>
+        <Text styleClass="Table_Headers" >Add Product</Text>
+        <TextField promptText="Search by Product ID/Name"></TextField>
     </HBox>
-
+    <Text fx:id = "ErrorHolder" styleClass="Errors"></Text>
     <FlowPane GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="AddPartForm">
         <HBox styleClass="AddPartFormField">
             <Label>ID</Label>
@@ -26,32 +26,32 @@
         </HBox>
         <HBox styleClass="AddPartFormField">
             <Label>Name</Label>
-            <TextField ></TextField>
+            <TextField fx:id="name"></TextField>
         </HBox>
         <HBox styleClass="AddPartFormField">
             <Label>Inv</Label>
-            <TextField ></TextField>
+            <TextField fx:id="inv"></TextField>
         </HBox>
         <HBox styleClass="AddPartFormField">
             <Label>Price/Cost</Label>
-            <TextField ></TextField>
+            <TextField fx:id="price"></TextField>
         </HBox>
         <HBox styleClass="AddPartFormField">
             <Label>Max</Label>
-            <TextField></TextField>
+            <TextField fx:id="max"></TextField>
             <Label fx:id="fieldMinimum">Min</Label>
-            <TextField></TextField>
+            <TextField fx:id="min"></TextField>
         </HBox>
     </FlowPane>
 
     <FlowPane GridPane.rowIndex="2" GridPane.columnIndex="6">
-        <TableView  styleClass="MainTables" >
+        <TableView  styleClass="MainTables" fx:id = "PartTable">
             <columns>
-                <TableColumn text="Part ID" prefWidth = "100">
+                <TableColumn text="Part ID" prefWidth = "100" fx:id = "PartId">
                 </TableColumn>
-                <TableColumn text="Part Name" prefWidth = "120"></TableColumn>
-                <TableColumn text="Inventory level" prefWidth = "130"></TableColumn>
-                <TableColumn text="Price/Cost per Unit" prefWidth = "150"></TableColumn>
+                <TableColumn text="Part Name" prefWidth = "120" fx:id = "PartName"></TableColumn>
+                <TableColumn text="Inventory level" prefWidth = "130" fx:id = "PartInv"></TableColumn>
+                <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id = "PartPrice"></TableColumn>
             </columns>
         </TableView>
         <Button>Add</Button>
@@ -66,7 +66,7 @@
         </TableView>
         <Button>Remove Associated Part</Button>
         <HBox spacing="20" GridPane.rowIndex="3" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
-            <Button>Save</Button>
+            <Button  onMouseClicked="#handleFormSubmission">Save</Button>
             <Button onMouseClicked="#handleCancelClick">Cancel</Button>
         </HBox>
     </FlowPane>

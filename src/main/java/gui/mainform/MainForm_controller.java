@@ -3,6 +3,7 @@ package gui.mainform;
 
 import functionality.Inventory;
 import functionality.Part;
+import functionality.Product;
 import javafx.application.Platform;
 
 import javafx.collections.FXCollections;
@@ -29,7 +30,7 @@ public class MainForm_controller implements Initializable {
     private Button addPartBtn;
     private static Stage stage;
 
-    /** Bind table with Inventory List*/
+    /** Bind table with Inventory List for Parts*/
     @FXML
     private TableView <Part> PartTable; //Part table
     @FXML
@@ -40,6 +41,19 @@ public class MainForm_controller implements Initializable {
     private TableColumn<Part, Integer> PartInv;
     @FXML
     private TableColumn<Part, Double> PartPrice;
+
+    /** Table for Products*/
+
+    @FXML
+    private TableView <Product> ProductTable; //Part table
+    @FXML
+    private TableColumn <Product, Integer> ProdId;
+    @FXML
+    private TableColumn<Product, String> ProdName;
+    @FXML
+    private TableColumn<Product, Integer> ProdInv;
+    @FXML
+    private TableColumn<Product, Double> ProdPrice;
 
     @FXML
     public Text ErrorHolder; //Hold errors
@@ -100,6 +114,15 @@ public class MainForm_controller implements Initializable {
         PartName.setCellValueFactory(data -> data.getValue().getStringName());
         PartPrice.setCellValueFactory(data -> data.getValue().getDoublePropertyPrice().asObject());
         PartInv.setCellValueFactory(data -> data.getValue().getIntStock().asObject());
+
+        //Populate Product table with Parts from Inventory
+
+        ProductTable.setItems(Inventory.getAllProducts());
+        ProdId.setCellValueFactory(data -> data.getValue().getIntId().asObject());
+        ProdName.setCellValueFactory(data -> data.getValue().getStringName());
+        ProdPrice.setCellValueFactory(data -> data.getValue().getDoublePropertyPrice().asObject());
+        ProdInv.setCellValueFactory(data -> data.getValue().getIntStock().asObject());
+
     }
 
 

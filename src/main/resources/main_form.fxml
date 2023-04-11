@@ -47,17 +47,17 @@
                             <Label  styleClass="Table_Headers">Products</Label>
                             <TextField promptText="Press Enter to search by Product ID/Name"></TextField>
                         </HBox>
-                    <TableView  styleClass="MainTables" >
+                    <TableView  styleClass="MainTables" fx:id="ProductTable">
                         <columns>
-                            <TableColumn text="Part ID" prefWidth = "100">
+                            <TableColumn text="Part ID" prefWidth = "100" fx:id="ProdId">
                             </TableColumn>
-                            <TableColumn text="Part Name" prefWidth = "120"></TableColumn>
-                            <TableColumn text="Inventory level" prefWidth = "130"></TableColumn>
-                            <TableColumn text="Price/Cost per Unit" prefWidth = "150"></TableColumn>
+                            <TableColumn text="Part Name" prefWidth = "120" fx:id="ProdName"></TableColumn>
+                            <TableColumn text="Inventory level" prefWidth = "130" fx:id="ProdInv"></TableColumn>
+                            <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id="ProdPrice"></TableColumn>
                         </columns>
 
                     </TableView>
-                        <HBox spacing="10" styleClass="MainGroupBtns" >
+                        <HBox spacing="10" styleClass="MainGroupBtns">
                             <Button fx:id="addProductBtn" onMouseClicked="#handleAddProductClick">Add</Button>
                             <Button fx:id="modifyProductBtn" onMouseClicked="#handleModifyProductClick">Modify</Button>
                             <Button >Delete</Button>

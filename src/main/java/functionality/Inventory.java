@@ -54,7 +54,7 @@ public class Inventory {
         String namePattern = partName;
         ObservableList<Part> tempList = FXCollections.observableArrayList();
         for(int i = 0; i < allParts.size(); i++){
-            if(allParts.get(i).getName().matches(namePattern)){
+            if(allParts.get(i).getName().contains(namePattern)){
                 tempList.add(allParts.get(i));
             }
         }
