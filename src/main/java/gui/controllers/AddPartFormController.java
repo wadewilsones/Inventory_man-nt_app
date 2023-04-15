@@ -50,10 +50,6 @@ public class AddPartFormController implements Initializable {
     public TextField additionalInfo;
 
 
-    public Text getLabelData() {
-        return LabelData;
-    }
-
     public void setLabelData(boolean isOutsource) {
         if(isOutsource){
             LabelData.setText("Company Name");

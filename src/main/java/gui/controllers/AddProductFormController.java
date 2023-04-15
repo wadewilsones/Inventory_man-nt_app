@@ -2,9 +2,12 @@ package gui.controllers;
 
 import functionality.*;
 import gui.mainform.MainForm_controller;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
@@ -22,6 +25,9 @@ public class AddProductFormController implements Initializable{
     @FXML
     public TextField GeneratedID;
     static public int generatedIdValue;
+
+    @FXML
+    public TextField SearchByIDField; // search Parts
 
     /** Bind table with Part List in Add Product From*/
     @FXML
@@ -98,17 +104,20 @@ public class AddProductFormController implements Initializable{
             /*Get input and Validate it*/
             Validation validateInput = new Validation(name.getText(), price.getText(), inv.getText(), min.getText(), max.getText(), "none");
             if (validateInput.getValidationValue()) {
-
                 /*Converting input to right type*/
                 double priceConverted = Double.parseDouble(price.getText());
                 int invConverted = Integer.parseInt(inv.getText());
                 int minConverted = Integer.parseInt(min.getText());
                 int maxConverted = Integer.parseInt(max.getText());
+                /*If product was already created in attached part option*/
                 if(newProduct == null){
                     newProduct = new Product(generatedIdValue, name.getText(), priceConverted, invConverted, minConverted, maxConverted);
+                    Inventory.addProduct(newProduct);
                 }
-                Inventory.addProduct(newProduct);
-
+                /*Add product to inventory*/
+                else{
+                    Inventory.addProduct(newProduct);
+                }
                 /*Close form after click*/
                 MainForm_controller.getStage().close();
             } else {
@@ -116,7 +125,7 @@ public class AddProductFormController implements Initializable{
             }
         }
         catch(Exception e){
-            ErrorHolder.setText("Error!Product was not added!");
+            ErrorHolder.setText("Error!Product was not added! " + e.getMessage());
         }
 
     }
@@ -127,14 +136,15 @@ public class AddProductFormController implements Initializable{
         try{
         // get selected part
         Part selectedPartForAssociation = PartTable.getSelectionModel().getSelectedItem();
-        System.out.println(selectedPartForAssociation.getName()); // print name of sel part
         // Create new product
         /*Converting input to right type*/
         double priceConverted = Double.parseDouble(price.getText());
         int invConverted = Integer.parseInt(inv.getText());
         int minConverted = Integer.parseInt(min.getText());
         int maxConverted = Integer.parseInt(max.getText());
-        newProduct = new Product(generatedIdValue, name.getText(), priceConverted, invConverted, minConverted, maxConverted);
+        if(newProduct == null){
+            newProduct = new Product(generatedIdValue, name.getText(), priceConverted, invConverted, minConverted, maxConverted);
+        }
         newProduct.addAssociatedPart(selectedPartForAssociation);
         // add to list of associated parts
         AssociatedPartTable.setItems(newProduct.getAllAssociatedParts());
@@ -144,10 +154,11 @@ public class AddProductFormController implements Initializable{
         AssociatedPartPrice.setCellValueFactory(data -> data.getValue().getDoublePropertyPrice().asObject());
         AssociatedPartInv.setCellValueFactory(data -> data.getValue().getIntStock().asObject());}
         catch (Exception e){
-            ErrorHolder.setText("Error!Part was not attached! Make sure to fill all fields for Product!");
+            ErrorHolder.setText("Error!Part was not attached! Fill out all fields.");
         }
     }
 
+    /**Disassociate part */
     public void handleRemoveAssociatedPart() {
         ErrorHolder.setText(""); // clear any errors if user try again
         if(newProduct == null){
@@ -181,4 +192,45 @@ public class AddProductFormController implements Initializable{
 
 
     }
+
+    /**Handle search by Part ID*/
+    public void SearchByID(KeyEvent keyEvent) {
+        try{
+            if(keyEvent.getCode().toString().equals("ENTER")){
+                /**Is search by Index*/
+                if(SearchByIDField.getText().matches("[0-9]+")){
+                    // Assign new created List to table
+                    Part LookedPart = Inventory.lookupPart(Integer.parseInt(SearchByIDField.getText()));
+                    if(LookedPart == null){
+                        ErrorHolder.setText("No matching parts were found");
+                    }
+                    else{
+                        ObservableList<Part> matchingList = FXCollections.observableArrayList();
+                        matchingList.add(LookedPart);
+                        PartTable.setItems(matchingList);
+                    }
+                }
+                else{
+                    /**Search by Name*/
+                    ObservableList<Part> matchingList = Inventory.lookupPart(SearchByIDField.getText());
+                    PartTable.setItems(matchingList);
+                }
+
+            }
+            else if(SearchByIDField.getText().equals("")){
+                PartTable.setItems(Inventory.getAllParts());
+            }
+        }
+        catch (Exception e){
+            if(SearchByIDField.getText().equals("")){
+                ErrorHolder.setText("ID/Name field is empty");
+            }
+            else if(Inventory.getAllParts().size() == 0){
+                ErrorHolder.setText("Table is empty!");
+
+            }
+        }
+    }
+
+
 }

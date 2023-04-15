@@ -5,9 +5,12 @@ import functionality.Part;
 import functionality.Product;
 import functionality.Validation;
 import gui.mainform.MainForm_controller;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
@@ -21,7 +24,8 @@ import static gui.mainform.MainForm_controller.selectedProduct;
 public class ModifyProductController implements Initializable {
 
     /**Input values*/
-
+    @FXML
+    public TextField SearchByIDField; // search Parts
     @FXML
     public TextField GeneratedID;
 
@@ -88,7 +92,6 @@ public class ModifyProductController implements Initializable {
 
         /**Display associated parts*/
             AssociatedPartTable.setItems(selectedProduct.getAllAssociatedParts());
-            System.out.println("Size of part row: " + selectedProduct.getAllAssociatedParts().size());
             //Display rows
             AssociatedPartId.setCellValueFactory(data -> data.getValue().getIntId().asObject());
             AssociatedPartName.setCellValueFactory(data -> data.getValue().getStringName());
@@ -138,11 +141,9 @@ public class ModifyProductController implements Initializable {
                     //Delete Record
                     selectedPartForAssociation = AssociatedPartTable.getSelectionModel().getSelectedItem();
                     selectedProduct.deleteAssociatedPart(selectedPartForAssociation);
-                    System.out.println("Delete this:" + selectedPartForAssociation.getName());
                 }
 
             } catch (Exception err) {
-                //System.out.println(err);
                 ErrorHolder.setText("Deletion is failed! Try again!");
             }
         }
@@ -165,7 +166,6 @@ public class ModifyProductController implements Initializable {
                 //Validate
                 Validation validateInput = new Validation(name.getText(), price.getText(), inv.getText(), min.getText(), max.getText(), "none");
                 if(validateInput.getValidationValue()){
-                    System.out.println("After validation");
                     /*Converting input to right type*/
                     double priceConverted = Double.parseDouble(price.getText());
                     int invConverted = Integer.parseInt(inv.getText());
@@ -177,8 +177,7 @@ public class ModifyProductController implements Initializable {
                     selectedProduct.setMin(minConverted);
                     selectedProduct.setMax(maxConverted);
                     selectedProduct.setStock(invConverted);
-                    Inventory.updateProduct(selectedProduct.getId()-1, selectedProduct);
-                    System.out.println("New name of product:"+ selectedProduct.getName());//r
+                    Inventory.updateProduct(Inventory.getAllProducts().indexOf(selectedProduct), selectedProduct);
                     MainForm_controller.getStage().close(); // close  modification window
                 }
                 else{
@@ -209,8 +208,47 @@ public class ModifyProductController implements Initializable {
 
     }
         catch (Exception err) {
-            //System.out.println(err);
             ErrorHolder.setText("Can't close window.");
         }
 }
+    /**Handle search by Part ID*/
+    public void SearchByID(KeyEvent keyEvent) {
+        try{
+            if(keyEvent.getCode().toString().equals("ENTER")){
+                /**Is search by Index*/
+                if(SearchByIDField.getText().matches("[0-9]+")){
+                    // Assign new created List to table
+                    Part LookedPart = Inventory.lookupPart(Integer.parseInt(SearchByIDField.getText()));
+                    if(LookedPart == null){
+                        ErrorHolder.setText("No matching parts were found");
+                    }
+                    else{
+                        ObservableList<Part> matchingList = FXCollections.observableArrayList();
+                        matchingList.add(LookedPart);
+                        PartTable.setItems(matchingList);
+                    }
+                }
+                else{
+                    /**Search by Name*/
+                    ObservableList<Part> matchingList = Inventory.lookupPart(SearchByIDField.getText());
+                    PartTable.setItems(matchingList);
+                }
+
+            }
+            else if(SearchByIDField.getText().equals("")){
+                PartTable.setItems(Inventory.getAllParts());
+            }
+        }
+        catch (Exception e){
+            if(SearchByIDField.getText().equals("")){
+                ErrorHolder.setText("ID/Name field is empty");
+            }
+            else if(Inventory.getAllParts().size() == 0){
+                ErrorHolder.setText("Table is empty!");
+
+            }
+        }
+    }
+
+
 }

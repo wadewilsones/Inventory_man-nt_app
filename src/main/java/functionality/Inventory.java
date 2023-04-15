@@ -23,6 +23,8 @@ public class Inventory {
     static public ObservableList<Product> getAllProducts(){
         return allProducts;
     };
+
+
     //Adding Part to Inventory
     static public void addPart(Part newPart){
         allParts.add(newPart);
@@ -33,7 +35,7 @@ public class Inventory {
     }
     //Modify Part
     static public  void updatePart(int index, Part selectedPart){
-        allParts.set(index-1, selectedPart);
+        allParts.set(index, selectedPart);
     }
     //Delete Part
     static public boolean deletePart(Part selectedPart){
@@ -41,8 +43,14 @@ public class Inventory {
     };
     //Search Part using id
     static public Part lookupPart(int PartId){
-
-        return allParts.get(PartId);
+        Part lookedPart = null;
+        for(int i = 0; i < allParts.size(); i++) {
+            if(allParts.get(i).getId() == PartId){
+                lookedPart = getAllParts().get(i);
+                return lookedPart;
+            }
+        }
+            return lookedPart;
     };
 
     //Search Part using name
@@ -73,8 +81,14 @@ static public boolean deleteProduct(Product selectedProduct){
         }
 
     static public Product lookupProduct(int productId){
+        Product lookedProduct = null;
+        for(int i = 0; i < allProducts.size(); i++) {
+            if(allProducts.get(i).getId() == productId){
+                lookedProduct = getAllProducts().get(i);
+            }
+        }
+        return lookedProduct;
 
-        return allProducts.get(productId);
     };
 
     static public ObservableList<Product> lookupProduct(String productName){
@@ -89,19 +103,4 @@ static public boolean deleteProduct(Product selectedProduct){
         return tempList;
     }
 };
-
-    /*
-
-
-
-
-+
-
-
-
-
-
-
-
-*/
 

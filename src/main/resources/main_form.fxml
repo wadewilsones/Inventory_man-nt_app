@@ -12,7 +12,7 @@
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="gui.mainform.MainForm_controller"
-          prefHeight="700.0" prefWidth="1400.0"
+          prefHeight="700.0" prefWidth="1500.0"
           >
     <stylesheets>
         <String fx:value="style.css" />
@@ -25,7 +25,7 @@
                     <FlowPane styleClass="Table_Container">
                         <HBox spacing="290" alignment="CENTER" styleClass="MainTable_Header">
                             <Label styleClass="Table_Headers">Parts</Label>
-                            <TextField promptText="Press Enter to search by Part ID/Name" fx:id = "SearchByIDField" onKeyPressed="#SearchByID"></TextField>
+                            <TextField promptText="Press Enter to search by Part ID/Name" id="SearchByIDField" fx:id = "SearchByIDField" onKeyPressed="#SearchByID"></TextField>
                         </HBox>
                         <TableView  styleClass="MainTables" fx:id="PartTable">
                             <columns>
@@ -35,7 +35,7 @@
                                 <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id="PartPrice"></TableColumn>
                             </columns>
                         </TableView>
-                        <HBox spacing="10" styleClass="MainGroupBtns">
+                        <HBox spacing="10" styleClass="MainGroupBtns" GridPane.halignment="RIGHT">
                             <Button fx:id="addPartBtn" onMouseClicked="#handleAddPartClick">Add</Button>
                             <Button fx:id="modifyPartBtn" onMouseClicked="#handleModifyPartClick">Modify</Button>
                             <Button fx:id="deletePart" onMouseClicked="#handleDeletePart">Delete</Button>
@@ -57,7 +57,7 @@
                         </columns>
 
                     </TableView>
-                        <HBox spacing="10" styleClass="MainGroupBtns">
+                        <HBox  spacing="260" alignment="CENTER" styleClass="MainGroupBtns" >
                             <Button fx:id="addProductBtn" onMouseClicked="#handleAddProductClick">Add</Button>
                             <Button fx:id="modifyProductBtn" onMouseClicked="#handleModifyProductClick">Modify</Button>
                             <Button onMouseClicked="#handleProductDeletion">Delete</Button>
@@ -66,7 +66,6 @@
                 </HBox>
 
             </FlowPane>
-
 
 
         <Button GridPane.rowIndex="4" GridPane.columnIndex="5" onMouseClicked="#ExitClickHandle">Exit</Button>

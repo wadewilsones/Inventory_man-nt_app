@@ -62,41 +62,6 @@ public class MainForm_controller implements Initializable {
     public static Part selectedPart;
     public static Product selectedProduct;
 
-    /**Handle search by Part ID*/
-
-    public void SearchByID(KeyEvent keyEvent) {
-        try{
-            if(keyEvent.getCode().toString().equals("ENTER")){
-                /**Is search by Index*/
-                if(SearchByIDField.getText().matches("[0-9]+")){
-                    // Assign new created List to table
-                    Part LookedPart = Inventory.lookupPart(Integer.parseInt(SearchByIDField.getText())-1);
-                    ObservableList<Part> matchingList = FXCollections.observableArrayList();
-                    matchingList.add(LookedPart);
-                    PartTable.setItems(matchingList);
-            }
-                else{
-                    /**Search by Name*/
-                    ObservableList<Part> matchingList = Inventory.lookupPart(SearchByIDField.getText());
-                    PartTable.setItems(matchingList);
-                }
-
-        }
-            else if(SearchByIDField.getText().equals("")){
-                PartTable.setItems(Inventory.getAllParts());
-            }
-        }
-        catch (Exception e){
-            if(SearchByIDField.getText().equals("")){
-                ErrorHolder.setText("ID/Name field is empty");
-            }
-            else if(Inventory.getAllParts().size() == 0){
-                ErrorHolder.setText("Table is empty!");
-
-        }
-    }
-    }
-
     /** Getter for stage*/
     public static Stage getStage() {
         return stage;
@@ -122,8 +87,48 @@ public class MainForm_controller implements Initializable {
 
     }
 
-
     /**PART TABLE HANDLE*/
+
+
+    /**Handle search by Part ID*/
+    public void SearchByID(KeyEvent keyEvent) {
+        try{
+            if(keyEvent.getCode().toString().equals("ENTER")){
+                /**Is search by Index*/
+                if(SearchByIDField.getText().matches("[0-9]+")){
+                    // Assign new created List to table
+                    Part LookedPart = Inventory.lookupPart(Integer.parseInt(SearchByIDField.getText()));
+                    if(LookedPart == null){
+                        ErrorHolder.setText("No matching parts were found");
+                    }
+                    else{
+                        ObservableList<Part> matchingList = FXCollections.observableArrayList();
+                        matchingList.add(LookedPart);
+                        PartTable.setItems(matchingList);
+                    }
+                }
+                else{
+                    /**Search by Name*/
+                    ObservableList<Part> matchingList = Inventory.lookupPart(SearchByIDField.getText());
+                    PartTable.setItems(matchingList);
+                }
+
+            }
+            else if(SearchByIDField.getText().equals("")){
+                PartTable.setItems(Inventory.getAllParts());
+            }
+        }
+        catch (Exception e){
+            if(SearchByIDField.getText().equals("")){
+                ErrorHolder.setText("ID/Name field is empty");
+            }
+            else if(Inventory.getAllParts().size() == 0){
+                ErrorHolder.setText("Table is empty!");
+
+            }
+        }
+    }
+
 
     /**Open Add Part Form*/
     public void handleAddPartClick(MouseEvent mouseEvent) {
@@ -148,28 +153,34 @@ public class MainForm_controller implements Initializable {
     public void handleModifyPartClick(MouseEvent mouseEvent) {
         ErrorHolder.setText("");
         /**Get  values from Selected Record*/
-        selectedPart = PartTable.getSelectionModel().getSelectedItem();
-
         try{
-            /**Load new FXML */
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/modifyPart.fxml"));
-            stage = new Stage();
-            stage.setTitle("Modify Part");
-            Parent root = (Parent) fxmlLoader.load();
-            stage.setScene(new Scene(root));
-            stage.show();
+            /*Set up a selected item*/
+            selectedPart = PartTable.getSelectionModel().getSelectedItem();
+            if(selectedPart == null){
+                ErrorHolder.setText("Nothing is selected");
+            }
+            else{
+                /**Load new FXML */
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/modifyPart.fxml"));
+                stage = new Stage();
+                stage.setTitle("Modify Part");
+                Parent root = (Parent) fxmlLoader.load();
+                stage.setScene(new Scene(root));
+                stage.show();
+            }
+
 
         }
         catch(IOException err){
+
             throw new RuntimeException(err);
         }
     }
 
     /**Delete part*/
-
-
     public void handleDeletePart(MouseEvent mouseEvent) {
         ErrorHolder.setText("");
+
         if(Inventory.getAllParts().size() == 0){
             ErrorHolder.setText("No parts to delete");
         }
@@ -226,17 +237,24 @@ public class MainForm_controller implements Initializable {
     public void handleModifyProductClick(MouseEvent mouseEvent) {
         ErrorHolder.setText("");
         /*Get selected TableView Field*/
-        /**Get  values from Selected Record*/
-        selectedProduct = ProductTable.getSelectionModel().getSelectedItem();
+
 
         try{
-            /**Load new FXML */
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/modifyProduct.fxml"));
-            stage = new Stage();
-            stage.setTitle("Modify Product");
-            Parent root = (Parent) fxmlLoader.load();
-            stage.setScene(new Scene(root));
-            stage.show();
+            /**Get  values from Selected Record*/
+            selectedProduct = ProductTable.getSelectionModel().getSelectedItem();
+            if(selectedProduct == null){
+                ErrorHolder.setText("Nothing is selected");
+            }
+            else{
+                /**Load new FXML */
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/modifyProduct.fxml"));
+                stage = new Stage();
+                stage.setTitle("Modify Product");
+                Parent root = (Parent) fxmlLoader.load();
+                stage.setScene(new Scene(root));
+                stage.show();
+            }
+
 
         }
         catch(IOException err){
@@ -295,10 +313,15 @@ public class MainForm_controller implements Initializable {
                 /**Is search by Index*/
                 if(productSearchField.getText().matches("[0-9]+")){
                     // Assign new created List to table
-                    Product LookedProduct = Inventory.lookupProduct(Integer.parseInt(productSearchField.getText())-1);
-                    ObservableList<Product> matchingList = FXCollections.observableArrayList();
-                    matchingList.add(LookedProduct);
-                    ProductTable.setItems(matchingList);
+                    Product LookedProduct = Inventory.lookupProduct(Integer.parseInt(productSearchField.getText()));
+                    if(LookedProduct != null){
+                        ObservableList<Product> matchingList = FXCollections.observableArrayList();
+                        matchingList.add(LookedProduct);
+                        ProductTable.setItems(matchingList);
+                    }
+                    else{
+                        ErrorHolder.setText("No matching products were found");
+                    }
                 }
                 else{
                     /**Search by Name*/
@@ -312,12 +335,12 @@ public class MainForm_controller implements Initializable {
             }
         }
         catch (Exception e){
+
             if(SearchByIDField.getText().equals("")){
                 ErrorHolder.setText("ID/Name field is empty");
             }
-            else if(Inventory.getAllParts().size() == 0){
+            else if(Inventory.getAllProducts().size() == 0){
                 ErrorHolder.setText("Table is empty!");
-
             }
         }
     }

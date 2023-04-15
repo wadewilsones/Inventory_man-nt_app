@@ -10,16 +10,16 @@
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="gui.controllers.ModifyProductController"
-          prefHeight="400.0" prefWidth="600.0">
+          prefHeight="1200.0" prefWidth="1300.0">
         <stylesheets>
             <String fx:value="style.css" />
         </stylesheets>
 
         <HBox GridPane.rowIndex="1" spacing="40" styleClass="AddPartFormHeader" GridPane.columnIndex="1">
             <Text styleClass="Table_Headers" >Modify Product</Text>
-            <TextField promptText="Search by Product ID/Name"></TextField>
+            <TextField promptText="Search by Part ID/Name" fx:id = "SearchByIDField" onKeyPressed="#SearchByID"></TextField>
         </HBox>
-        <Text fx:id = "ErrorHolder" styleClass="Errors"></Text>
+        <Text fx:id = "ErrorHolder" styleClass="Errors" GridPane.columnIndex="1" GridPane.columnSpan="4"></Text>
         <FlowPane GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="AddPartForm">
             <HBox styleClass="AddPartFormField">
                 <Label>ID</Label>
@@ -45,7 +45,7 @@
             </HBox>
         </FlowPane>
 
-        <HBox GridPane.rowIndex="2" GridPane.columnIndex="6">
+        <FlowPane GridPane.rowIndex="2" GridPane.columnIndex="6">
             <TableView  styleClass="MainTables" fx:id = "PartTable">
                 <columns>
                     <TableColumn text="Part ID" prefWidth = "100" fx:id = "PartId">
@@ -70,7 +70,7 @@
                 <Button  onMouseClicked="#handleFormSubmission">Save</Button>
                 <Button onMouseClicked="#handleCancelClick">Cancel</Button>
             </HBox>
-        </HBox>
+        </FlowPane>
 
 
     </GridPane>

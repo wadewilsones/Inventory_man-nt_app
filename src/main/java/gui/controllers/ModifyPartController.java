@@ -91,12 +91,10 @@ public class ModifyPartController implements Initializable {
         if (selectedPart instanceof InHouse) {
             setLabelData(false);
             InHouse.setSelected(true);
-            System.out.println("InHouse Branch for initializw");
             additionalInfo.setText(Integer.toString(((InHouse) selectedPart).getMachineId()));
         } else {
             setLabelData(true);
             OutsourcedRBtn.setSelected(true);
-            System.out.println("Outsource Branch for initializw");
             additionalInfo.setText(((Outsourced) selectedPart).getCompanyName());
         }
 
@@ -123,10 +121,10 @@ public class ModifyPartController implements Initializable {
             if (!isOutsourcePart) {
                 int additionalInfoConverted = Integer.parseInt(additionalInfo.getText());
                 InHouse updatePart = new InHouse(Integer.valueOf(String.valueOf(GeneratedID.getText())), name.getText(), priceConverted, invConverted, minConverted, maxConverted, additionalInfoConverted);
-                Inventory.updatePart(selectedPart.getId(), updatePart);
+                Inventory.updatePart(Inventory.getAllParts().indexOf(selectedPart), updatePart);
             } else {
                 Outsourced updateOutPart = new Outsourced(Integer.valueOf(String.valueOf(GeneratedID.getText())), name.getText(), priceConverted, invConverted, minConverted, maxConverted, additionalInfo.getText());
-                Inventory.updatePart(selectedPart.getId(), updateOutPart);
+                Inventory.updatePart(Inventory.getAllParts().indexOf(selectedPart), updateOutPart);
             }
         }
 
