@@ -45,13 +45,13 @@
                     <FlowPane  styleClass="Table_Container">
                         <HBox spacing="260" alignment="CENTER" styleClass="MainTable_Header">
                             <Label  styleClass="Table_Headers">Products</Label>
-                            <TextField promptText="Press Enter to search by Product ID/Name"></TextField>
+                            <TextField promptText="Press Enter to search by Product ID/Name"  fx:id ="productSearchField" onKeyPressed="#SearchProduct"></TextField>
                         </HBox>
-                    <TableView  styleClass="MainTables" fx:id="ProductTable">
+                    <TableView  styleClass="MainTables" fx:id="ProductTable" >
                         <columns>
-                            <TableColumn text="Part ID" prefWidth = "100" fx:id="ProdId">
+                            <TableColumn text="Product ID" prefWidth = "100" fx:id="ProdId">
                             </TableColumn>
-                            <TableColumn text="Part Name" prefWidth = "120" fx:id="ProdName"></TableColumn>
+                            <TableColumn text="Product Name" prefWidth = "120" fx:id="ProdName"></TableColumn>
                             <TableColumn text="Inventory level" prefWidth = "130" fx:id="ProdInv"></TableColumn>
                             <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id="ProdPrice"></TableColumn>
                         </columns>
@@ -60,7 +60,7 @@
                         <HBox spacing="10" styleClass="MainGroupBtns">
                             <Button fx:id="addProductBtn" onMouseClicked="#handleAddProductClick">Add</Button>
                             <Button fx:id="modifyProductBtn" onMouseClicked="#handleModifyProductClick">Modify</Button>
-                            <Button >Delete</Button>
+                            <Button onMouseClicked="#handleProductDeletion">Delete</Button>
                         </HBox>
                     </FlowPane>
                 </HBox>

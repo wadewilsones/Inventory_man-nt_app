@@ -26,8 +26,6 @@ import java.util.ResourceBundle;
 /**RUNTIME or LOGICAL ERRORS didn't occur here.*/
 public class MainForm_controller implements Initializable {
 
-    @FXML
-    private Button addPartBtn;
     private static Stage stage;
 
     /** Bind table with Inventory List for Parts*/
@@ -45,7 +43,7 @@ public class MainForm_controller implements Initializable {
     /** Table for Products*/
 
     @FXML
-    private TableView <Product> ProductTable; //Part table
+    private TableView <Product> ProductTable; //Product table
     @FXML
     private TableColumn <Product, Integer> ProdId;
     @FXML
@@ -59,7 +57,10 @@ public class MainForm_controller implements Initializable {
     public Text ErrorHolder; //Hold errors
     @FXML
     public TextField SearchByIDField; // holds id
+    @FXML
+    public TextField productSearchField;
     public static Part selectedPart;
+    public static Product selectedProduct;
 
     /**Handle search by Part ID*/
 
@@ -69,9 +70,7 @@ public class MainForm_controller implements Initializable {
                 /**Is search by Index*/
                 if(SearchByIDField.getText().matches("[0-9]+")){
                     // Assign new created List to table
-                    System.out.println(Integer.parseInt(SearchByIDField.getText()));
                     Part LookedPart = Inventory.lookupPart(Integer.parseInt(SearchByIDField.getText())-1);
-                    System.out.println(LookedPart.getName());
                     ObservableList<Part> matchingList = FXCollections.observableArrayList();
                     matchingList.add(LookedPart);
                     PartTable.setItems(matchingList);
@@ -97,8 +96,6 @@ public class MainForm_controller implements Initializable {
         }
     }
     }
-
-
 
     /** Getter for stage*/
     public static Stage getStage() {
@@ -130,7 +127,7 @@ public class MainForm_controller implements Initializable {
 
     /**Open Add Part Form*/
     public void handleAddPartClick(MouseEvent mouseEvent) {
-
+        ErrorHolder.setText("");
         try{
             /**Load new FXML */
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/addPart.fxml"));
@@ -149,7 +146,7 @@ public class MainForm_controller implements Initializable {
 
     /**Open Modify Part Form*/
     public void handleModifyPartClick(MouseEvent mouseEvent) {
-
+        ErrorHolder.setText("");
         /**Get  values from Selected Record*/
         selectedPart = PartTable.getSelectionModel().getSelectedItem();
 
@@ -172,12 +169,12 @@ public class MainForm_controller implements Initializable {
 
 
     public void handleDeletePart(MouseEvent mouseEvent) {
-
-        selectedPart = PartTable.getSelectionModel().getSelectedItem();
+        ErrorHolder.setText("");
         if(Inventory.getAllParts().size() == 0){
-            ErrorHolder.setText("Inventory is empty");
+            ErrorHolder.setText("No parts to delete");
         }
         else{
+            selectedPart = PartTable.getSelectionModel().getSelectedItem();
             try{
                 /*Create Dialog*/
                 Dialog<ButtonType> dialog = new Dialog<>();
@@ -209,6 +206,7 @@ public class MainForm_controller implements Initializable {
 
     /**Open Add Product Form*/
     public void handleAddProductClick(MouseEvent mouseEvent) {
+        ErrorHolder.setText("");
         try{
             /**Load new FXML */
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/addProduct.fxml"));
@@ -226,8 +224,10 @@ public class MainForm_controller implements Initializable {
 
     /**Open Modify Product Form*/
     public void handleModifyProductClick(MouseEvent mouseEvent) {
-
+        ErrorHolder.setText("");
         /*Get selected TableView Field*/
+        /**Get  values from Selected Record*/
+        selectedProduct = ProductTable.getSelectionModel().getSelectedItem();
 
         try{
             /**Load new FXML */
@@ -244,6 +244,82 @@ public class MainForm_controller implements Initializable {
         }
 
 
+    }
+
+    /**Delete Product*/
+
+    public void handleProductDeletion(MouseEvent mouseEvent){
+        ErrorHolder.setText("");
+        /*Get selected TableView Field*/
+        /**Get  values from Selected Record*/
+        if(Inventory.getAllProducts().size() == 0){
+            ErrorHolder.setText("No products to delete");
+        }
+        else{
+            selectedProduct = ProductTable.getSelectionModel().getSelectedItem();
+            try{
+                if(selectedProduct.getAllAssociatedParts().size() > 0){
+                    ErrorHolder.setText("Can't delete Product that have attached parts. Remove all parts and try again.");
+                }
+                else{
+                    /*Create Dialog*/
+                    Dialog<ButtonType> dialog = new Dialog<>();
+                    dialog.setTitle("Confirm Deletion");
+                    ButtonType confirm = new ButtonType("Confirm", ButtonBar.ButtonData.OK_DONE);
+                    ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                    dialog.setContentText("Confirmation of Deletion");
+                    dialog.getDialogPane().getButtonTypes().add(confirm);
+                    dialog.getDialogPane().getButtonTypes().add(cancel);
+                    Optional<ButtonType> result = dialog.showAndWait();
+                    if(result.get() == confirm){
+                        //Delete Record
+                        Inventory.deleteProduct(selectedProduct);
+                    }
+                    System.out.println("Deleted: " + selectedProduct.getName());
+                }
+            }
+            catch (Exception e){
+                ErrorHolder.setText("Can't delete Product" + e.getMessage());
+            }
+        }
+
+
+    }
+
+    //Search Product by ID/Name
+
+    public void SearchProduct(KeyEvent keyEvent) {
+        try{
+            if(keyEvent.getCode().toString().equals("ENTER")){
+                /**Is search by Index*/
+                if(productSearchField.getText().matches("[0-9]+")){
+                    // Assign new created List to table
+                    Product LookedProduct = Inventory.lookupProduct(Integer.parseInt(productSearchField.getText())-1);
+                    ObservableList<Product> matchingList = FXCollections.observableArrayList();
+                    matchingList.add(LookedProduct);
+                    ProductTable.setItems(matchingList);
+                }
+                else{
+                    /**Search by Name*/
+                    ObservableList<Product> matchingList = Inventory.lookupProduct(productSearchField.getText());
+                    ProductTable.setItems(matchingList);
+                }
+
+            }
+            else if(SearchByIDField.getText().equals("")){
+                PartTable.setItems(Inventory.getAllParts());
+            }
+        }
+        catch (Exception e){
+            if(SearchByIDField.getText().equals("")){
+                ErrorHolder.setText("ID/Name field is empty");
+            }
+            else if(Inventory.getAllParts().size() == 0){
+                ErrorHolder.setText("Table is empty!");
+
+            }
+        }
     }
 
 

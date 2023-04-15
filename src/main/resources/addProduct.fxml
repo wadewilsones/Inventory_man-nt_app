@@ -9,7 +9,7 @@
 <GridPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="gui.controllers.AddProductFormController"
-          prefHeight="700.0" prefWidth="1200.0">
+          prefHeight="900.0" prefWidth="1200.0">
     <stylesheets>
         <String fx:value="style.css" />
     </stylesheets>
@@ -44,7 +44,7 @@
         </HBox>
     </FlowPane>
 
-    <FlowPane GridPane.rowIndex="2" GridPane.columnIndex="6">
+    <HBox GridPane.rowIndex="2" GridPane.columnIndex="6">
         <TableView  styleClass="MainTables" fx:id = "PartTable">
             <columns>
                 <TableColumn text="Part ID" prefWidth = "100" fx:id = "PartId">
@@ -54,22 +54,22 @@
                 <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id = "PartPrice"></TableColumn>
             </columns>
         </TableView>
-        <Button>Add</Button>
-        <TableView  styleClass="MainTables" >
+        <Button onMouseClicked="#handlePartAttach">Add</Button>
+        <TableView  styleClass="MainTables" fx:id="AssociatedPartTable">
             <columns>
-                <TableColumn text="Part ID" prefWidth = "100">
+                <TableColumn text="Part ID" prefWidth = "100" fx:id="AssociatedPartId">
                 </TableColumn>
-                <TableColumn text="Part Name" prefWidth = "120"></TableColumn>
-                <TableColumn text="Inventory level" prefWidth = "130"></TableColumn>
-                <TableColumn text="Price/Cost per Unit" prefWidth = "150"></TableColumn>
+                <TableColumn text="Part Name" prefWidth = "120" fx:id="AssociatedPartName"></TableColumn>
+                <TableColumn text="Inventory level" prefWidth = "130" fx:id="AssociatedPartInv"></TableColumn>
+                <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id="AssociatedPartPrice"></TableColumn>
             </columns>
         </TableView>
-        <Button>Remove Associated Part</Button>
+        <Button onMouseClicked="#handleRemoveAssociatedPart">Remove Associated Part</Button>
         <HBox spacing="20" GridPane.rowIndex="3" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
             <Button  onMouseClicked="#handleFormSubmission">Save</Button>
             <Button onMouseClicked="#handleCancelClick">Cancel</Button>
         </HBox>
-    </FlowPane>
+    </HBox>
 
 
 </GridPane>
