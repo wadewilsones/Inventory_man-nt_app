@@ -33,7 +33,6 @@ public class Inventory {
     }
     //Modify Part
     static public  void updatePart(int index, Part selectedPart){
-        System.out.println("New name:  "+  selectedPart.getName());
         allParts.set(index-1, selectedPart);
     }
     //Delete Part
@@ -60,20 +59,45 @@ public class Inventory {
         }
         return tempList;
     };
+
+//Update product
+static public void updateProduct(int index, Product newProduct){
+    allProducts.set(index, newProduct);
+        };
+
+
+/*Delete product*/
+
+static public boolean deleteProduct(Product selectedProduct){
+        return allProducts.remove(selectedProduct);
+        }
+
+    static public Product lookupProduct(int productId){
+
+        return allProducts.get(productId);
+    };
+
+    static public ObservableList<Product> lookupProduct(String productName){
+        /*Find part using name*/
+        String namePattern = productName;
+        ObservableList<Product> tempList = FXCollections.observableArrayList();
+        for(int i = 0; i < allProducts.size(); i++){
+            if(allProducts.get(i).getName().contains(namePattern)){
+                tempList.add(allProducts.get(i));
+            }
+        }
+        return tempList;
+    }
 };
-
-
-
 
     /*
 
 
-+ addProduct(newProduct:Product):void
-+ lookupProduct(productId:int):Product
 
-+ lookupProduct(productName:String):ObservableList<Product>
-+ updateProduct(index:int, newProduct:Product):void
-+ deleteProduct(selectedProduct:Product):boolean
+
++
+
+
 
 
 

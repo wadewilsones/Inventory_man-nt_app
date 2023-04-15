@@ -6,9 +6,71 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ModifyProduct"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.scene.text.Text?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="gui.controllers.ModifyProductController"
+          prefHeight="400.0" prefWidth="600.0">
+        <stylesheets>
+            <String fx:value="style.css" />
+        </stylesheets>
 
-</AnchorPane>
+        <HBox GridPane.rowIndex="1" spacing="40" styleClass="AddPartFormHeader" GridPane.columnIndex="1">
+            <Text styleClass="Table_Headers" >Modify Product</Text>
+            <TextField promptText="Search by Product ID/Name"></TextField>
+        </HBox>
+        <Text fx:id = "ErrorHolder" styleClass="Errors"></Text>
+        <FlowPane GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="AddPartForm">
+            <HBox styleClass="AddPartFormField">
+                <Label>ID</Label>
+                <TextField promptText="Auto Gen-Disabled" disable="true" fx:id="GeneratedID"></TextField>
+            </HBox>
+            <HBox styleClass="AddPartFormField">
+                <Label>Name</Label>
+                <TextField fx:id="name"></TextField>
+            </HBox>
+            <HBox styleClass="AddPartFormField">
+                <Label>Inv</Label>
+                <TextField fx:id="inv"></TextField>
+            </HBox>
+            <HBox styleClass="AddPartFormField">
+                <Label>Price/Cost</Label>
+                <TextField fx:id="price"></TextField>
+            </HBox>
+            <HBox styleClass="AddPartFormField">
+                <Label>Max</Label>
+                <TextField fx:id="max"></TextField>
+                <Label fx:id="fieldMinimum">Min</Label>
+                <TextField fx:id="min"></TextField>
+            </HBox>
+        </FlowPane>
+
+        <HBox GridPane.rowIndex="2" GridPane.columnIndex="6">
+            <TableView  styleClass="MainTables" fx:id = "PartTable">
+                <columns>
+                    <TableColumn text="Part ID" prefWidth = "100" fx:id = "PartId">
+                    </TableColumn>
+                    <TableColumn text="Part Name" prefWidth = "120" fx:id = "PartName"></TableColumn>
+                    <TableColumn text="Inventory level" prefWidth = "130" fx:id = "PartInv"></TableColumn>
+                    <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id = "PartPrice"></TableColumn>
+                </columns>
+            </TableView>
+            <Button onMouseClicked="#handlePartAttach">Add</Button>
+            <TableView  styleClass="MainTables" fx:id="AssociatedPartTable">
+                <columns>
+                    <TableColumn text="Part ID" prefWidth = "100" fx:id="AssociatedPartId">
+                    </TableColumn>
+                    <TableColumn text="Part Name" prefWidth = "120" fx:id="AssociatedPartName"></TableColumn>
+                    <TableColumn text="Inventory level" prefWidth = "130" fx:id="AssociatedPartInv"></TableColumn>
+                    <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id="AssociatedPartPrice"></TableColumn>
+                </columns>
+            </TableView>
+            <Button onMouseClicked="#handleRemoveAssociatedPart">Remove Associated Part</Button>
+            <HBox spacing="20" GridPane.rowIndex="3" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+                <Button  onMouseClicked="#handleFormSubmission">Save</Button>
+                <Button onMouseClicked="#handleCancelClick">Cancel</Button>
+            </HBox>
+        </HBox>
+
+
+    </GridPane>

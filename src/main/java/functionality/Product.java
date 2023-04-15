@@ -1,10 +1,11 @@
 package functionality;
 
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Product {
-    private ObservableList<Part> associatedParts;
+    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     private int id;
     private  String name;
     private  double price;
@@ -13,6 +14,15 @@ public class Product {
     private int max;
 
     /**Constructor */
+
+    public Product(){
+        this.id = 0;
+        this.name = "Not set";
+        this.price = 0;
+        this.stock = 0;
+        this.min = 0;
+        this.max = 0;
+    }; // for handle associated parts
     public Product(int id, String name, double price, int stock, int min,int max){
         this.id = id;
         this.name = name;
@@ -50,36 +60,33 @@ public class Product {
     public int getId(){
         return this.id;
     }
-    public String getName(String name){
+    public String getName(){
         return this.name;
     }
-    public double getPrice(double price){
+    public double getPrice(){
         return this.price;
     }
-    public int getStock(int stock){
+    public int getStock(){
         return this.stock;
     }
-
-    public int getMin(int min){
+    public int getMin(){
         return this.min;
     }
-    public int getMax(int max){
+    public int getMax(){
         return this.max;
     }
 
     public void addAssociatedPart(Part part){
-
+        associatedParts.add(part);
     }
-
     public boolean deleteAssociatedPart(Part selectedAssociatedPart){
-    return true;
+           return associatedParts.remove(selectedAssociatedPart);
     }
 
-    /*
+    /*Display products associated parts*/
     public ObservableList<Part> getAllAssociatedParts(){
-        return "hello";
+        return associatedParts;
     }
-*/
 
     /*Transform integer to Property to use for filling table rows*/
     public IntegerProperty getIntId(){
