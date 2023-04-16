@@ -10,14 +10,15 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static gui.mainform.MainForm_controller.selectedProduct;
 
-/**RUNTIME or LOGICAL ERRORS didn't occur here.*/
+
+/**
+ * This controller class is used in AddProduct FXML, to handle Events and etc
+ */
 
 public class AddProductFormController implements Initializable{
 
@@ -29,7 +30,9 @@ public class AddProductFormController implements Initializable{
     @FXML
     public TextField SearchByIDField; // search Parts
 
-    /** Bind table with Part List in Add Product From*/
+    /**
+     * Bind table with Part List in Add Product From
+     * */
     @FXML
     private TableView<Part> PartTable; //Part table
     @FXML
@@ -41,7 +44,9 @@ public class AddProductFormController implements Initializable{
     @FXML
     private TableColumn<Part, Double> PartPrice;
 
-    /** Associated Parts*/
+    /**
+     * Associated Parts
+     * */
     @FXML
     private TableView<Part> AssociatedPartTable; //Part table
     @FXML
@@ -55,11 +60,20 @@ public class AddProductFormController implements Initializable{
 
     public Part selectedPartForAssociation;
 
+    /**
+     * Holds a newly created product
+     */
     public Product newProduct;
+
+    /**
+     * Display errors if any
+     */
     @FXML
     public Text ErrorHolder;
 
-    /**Input values*/
+    /**
+     * Hold User Input values
+     * */
 
     @FXML
     public TextField name;
@@ -73,7 +87,9 @@ public class AddProductFormController implements Initializable{
     public TextField min;
 
 
-    /**Handle screens of Modify and Add*/
+    /**
+     * Initializes first rendered values
+     * */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -91,13 +107,17 @@ public class AddProductFormController implements Initializable{
         PartInv.setCellValueFactory(data -> data.getValue().getIntStock().asObject());
 
     }
-    /**Close opened window*/
+    /**
+     * Close opened window
+     * */
     public void handleCancelClick(MouseEvent mouseEvent) {
 
         MainForm_controller.getStage().close();
     }
 
-/** Handle adding product*/
+    /**
+     * Handle adding product
+     * */
     public void handleFormSubmission(MouseEvent mouseEvent) {
         ErrorHolder.setText(""); // clear any errors if user try again
         try {
@@ -130,7 +150,9 @@ public class AddProductFormController implements Initializable{
 
     }
 
-    /**Attach selected part */
+    /**
+     * Attach selected part
+     */
     public void handlePartAttach(MouseEvent mouseEvent) {
         ErrorHolder.setText(""); // clear any errors if user try again
         try{
@@ -158,7 +180,9 @@ public class AddProductFormController implements Initializable{
         }
     }
 
-    /**Disassociate part */
+    /**
+     * Disassociate part
+     * */
     public void handleRemoveAssociatedPart() {
         ErrorHolder.setText(""); // clear any errors if user try again
         if(newProduct == null){
@@ -193,7 +217,9 @@ public class AddProductFormController implements Initializable{
 
     }
 
-    /**Handle search by Part ID*/
+    /**
+     * Handle search by Part ID
+     * */
     public void SearchByID(KeyEvent keyEvent) {
         try{
             if(keyEvent.getCode().toString().equals("ENTER")){

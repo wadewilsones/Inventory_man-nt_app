@@ -23,12 +23,14 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-/**RUNTIME or LOGICAL ERRORS didn't occur here.*/
+
 public class MainForm_controller implements Initializable {
 
     private static Stage stage;
 
-    /** Bind table with Inventory List for Parts*/
+    /**
+     * Bind table with Inventory List for Parts
+     * */
     @FXML
     private TableView <Part> PartTable; //Part table
     @FXML
@@ -40,7 +42,9 @@ public class MainForm_controller implements Initializable {
     @FXML
     private TableColumn<Part, Double> PartPrice;
 
-    /** Table for Products*/
+    /**
+     * Table for Products
+     * */
 
     @FXML
     private TableView <Product> ProductTable; //Product table
@@ -62,12 +66,16 @@ public class MainForm_controller implements Initializable {
     public static Part selectedPart;
     public static Product selectedProduct;
 
-    /** Getter for stage*/
+    /**
+     * Getter for stage
+     * */
     public static Stage getStage() {
         return stage;
     }
 
-    /**Initial Population*/
+    /**
+     * Initial Population
+     * */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Populate Part table with Parts from Inventory
@@ -89,8 +97,9 @@ public class MainForm_controller implements Initializable {
 
     /**PART TABLE HANDLE*/
 
-
-    /**Handle search by Part ID*/
+    /**
+     * Handle search by Part ID
+     * */
     public void SearchByID(KeyEvent keyEvent) {
         try{
             if(keyEvent.getCode().toString().equals("ENTER")){
@@ -130,7 +139,9 @@ public class MainForm_controller implements Initializable {
     }
 
 
-    /**Open Add Part Form*/
+    /**
+     * Open Add Part Form
+     * */
     public void handleAddPartClick(MouseEvent mouseEvent) {
         ErrorHolder.setText("");
         try{
@@ -149,7 +160,9 @@ public class MainForm_controller implements Initializable {
 
     }
 
-    /**Open Modify Part Form*/
+    /**
+     * Open Modify Part Form
+     * */
     public void handleModifyPartClick(MouseEvent mouseEvent) {
         ErrorHolder.setText("");
         /**Get  values from Selected Record*/
@@ -177,7 +190,9 @@ public class MainForm_controller implements Initializable {
         }
     }
 
-    /**Delete part*/
+    /**
+     * Delete part
+     * */
     public void handleDeletePart(MouseEvent mouseEvent) {
         ErrorHolder.setText("");
 
@@ -215,7 +230,9 @@ public class MainForm_controller implements Initializable {
 
     /**PRODUCT TABLE HANDLE*/
 
-    /**Open Add Product Form*/
+    /**
+     * Open Add Product Form
+     * */
     public void handleAddProductClick(MouseEvent mouseEvent) {
         ErrorHolder.setText("");
         try{
@@ -233,7 +250,9 @@ public class MainForm_controller implements Initializable {
         }
     }
 
-    /**Open Modify Product Form*/
+    /**
+     * Open Modify Product Form
+     * */
     public void handleModifyProductClick(MouseEvent mouseEvent) {
         ErrorHolder.setText("");
         /*Get selected TableView Field*/
@@ -264,7 +283,9 @@ public class MainForm_controller implements Initializable {
 
     }
 
-    /**Delete Product*/
+    /**
+     * Delete Product
+     * */
 
     public void handleProductDeletion(MouseEvent mouseEvent){
         ErrorHolder.setText("");
@@ -305,8 +326,9 @@ public class MainForm_controller implements Initializable {
 
     }
 
-    //Search Product by ID/Name
-
+    /**
+     * Search Product by ID/Name
+     * */
     public void SearchProduct(KeyEvent keyEvent) {
         try{
             if(keyEvent.getCode().toString().equals("ENTER")){
@@ -346,7 +368,9 @@ public class MainForm_controller implements Initializable {
     }
 
 
-    /**Close entire Application*/
+    /**
+     * Close entire Application
+     * */
     public void ExitClickHandle(MouseEvent mouseEvent) {
 
         Platform.exit();

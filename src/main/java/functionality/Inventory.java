@@ -4,44 +4,70 @@ import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-/**RUNTIME ERROR: Exception in thread "JavaFX Application Thread" java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
- * FIXED with
+/**
+ * Static class holds data for Parts and Products
  */
 public class Inventory {
 
-    //List of all Parts
+    /**
+     * List of all Parts
+     */
     static private ObservableList <Part> allParts = FXCollections.observableArrayList();
-    //List of all products
+    /**
+     * List of all Products
+     */
     static private ObservableList <Product> allProducts = FXCollections.observableArrayList();
 
-    /**Methods*/
-    //Return all  Parts
+    /**
+     * Returns of all parts
+     */
     static public ObservableList<Part> getAllParts(){
         return allParts;
     };
-    //Returns of all products
+    /**
+     *  Return all products
+     */
+
     static public ObservableList<Product> getAllProducts(){
         return allProducts;
     };
 
+    /**
+     * Adding Part to Inventory
+     */
 
-    //Adding Part to Inventory
     static public void addPart(Part newPart){
         allParts.add(newPart);
     }
-    //Adding Product to Inventory
+
+    /**
+     * Adding Product to Inventory
+     */
+
     static public void addProduct(Product newProduct){
         allProducts.add(newProduct);
     }
-    //Modify Part
+
+    /**
+     * Modify Part
+     */
+
     static public  void updatePart(int index, Part selectedPart){
         allParts.set(index, selectedPart);
     }
-    //Delete Part
+
+    /**
+     * Delete Part
+     */
+
     static public boolean deletePart(Part selectedPart){
         return allParts.remove(selectedPart);
     };
-    //Search Part using id
+
+    /**
+     * Search Part using id
+     */
+
     static public Part lookupPart(int PartId){
         Part lookedPart = null;
         for(int i = 0; i < allParts.size(); i++) {
@@ -53,7 +79,9 @@ public class Inventory {
             return lookedPart;
     };
 
-    //Search Part using name
+    /**
+     * Search Part using name
+     */
 
     static public ObservableList<Part> lookupPart(String partName){
 
@@ -68,18 +96,24 @@ public class Inventory {
         return tempList;
     };
 
-//Update product
-static public void updateProduct(int index, Product newProduct){
-    allProducts.set(index, newProduct);
-        };
+    /**
+     * Update product
+     */
 
+    static public void updateProduct(int index, Product newProduct){
+        allProducts.set(index, newProduct);
+    };
 
-/*Delete product*/
-
-static public boolean deleteProduct(Product selectedProduct){
+    /**
+     * Delete product
+     */
+    static public boolean deleteProduct(Product selectedProduct){
         return allProducts.remove(selectedProduct);
-        }
+    }
 
+    /**
+     * Search for product using Id
+     */
     static public Product lookupProduct(int productId){
         Product lookedProduct = null;
         for(int i = 0; i < allProducts.size(); i++) {
@@ -90,6 +124,11 @@ static public boolean deleteProduct(Product selectedProduct){
         return lookedProduct;
 
     };
+
+
+    /**
+     * Search for product using name
+     */
 
     static public ObservableList<Product> lookupProduct(String productName){
         /*Find part using name*/

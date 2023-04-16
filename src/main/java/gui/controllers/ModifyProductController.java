@@ -21,9 +21,15 @@ import java.util.ResourceBundle;
 import static gui.mainform.MainForm_controller.selectedPart;
 import static gui.mainform.MainForm_controller.selectedProduct;
 
+
+/**
+ * This controller class is used in ModifyProduct FXML, to handle Events and etc
+ */
 public class ModifyProductController implements Initializable {
 
-    /**Input values*/
+    /**
+     * Input values
+     * */
     @FXML
     public TextField SearchByIDField; // search Parts
     @FXML
@@ -40,7 +46,9 @@ public class ModifyProductController implements Initializable {
     @FXML
     public TextField min;
 
-    /** Bind table with Part List in Add Product From*/
+    /**
+     * Bind table with Part List in Modify Product From
+     * */
     @FXML
     private TableView<Part> PartTable; //Part table
     @FXML
@@ -52,7 +60,9 @@ public class ModifyProductController implements Initializable {
     @FXML
     private TableColumn<Part, Double> PartPrice;
 
-    /** Associated Parts*/
+    /**
+     * Associated Parts
+     * */
     public Part selectedPartForAssociation;
     @FXML
     private TableView<Part> AssociatedPartTable; //Part table
@@ -70,7 +80,10 @@ public class ModifyProductController implements Initializable {
     @FXML
     public Text ErrorHolder;
 
-    /*Display initial values for text fields*/
+
+    /**
+     * Assigning Initial Values for components
+     */
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -100,7 +113,10 @@ public class ModifyProductController implements Initializable {
 
     }
 
-    //Attach Part to Product
+    /**
+     *    Attach Part to Product
+     */
+
 
     public void handlePartAttach(MouseEvent mouseEvent) {
         ErrorHolder.setText(""); // clear any errors if user try again
@@ -120,7 +136,11 @@ public class ModifyProductController implements Initializable {
             ErrorHolder.setText("Error!Part was not attached! Make sure to fill all fields for Product!");
         }
     }
-//Remove attached part
+
+    /**
+     *    Remove attached part
+     */
+
     public void handleRemoveAssociatedPart(MouseEvent mouseEvent) {
         ErrorHolder.setText(""); // clear any errors if user try again
         if (selectedProduct.getAllAssociatedParts().size() == 0) {
@@ -149,7 +169,10 @@ public class ModifyProductController implements Initializable {
         }
     }
 
-    //Save modification
+
+    /**
+     *    Save modification
+     */
     public void handleFormSubmission(MouseEvent mouseEvent) {
         try{
             //Ask for confirmation
@@ -190,7 +213,10 @@ public class ModifyProductController implements Initializable {
             ErrorHolder.setText("Can't update Product! Error: " + e.getMessage());
         }
     }
-//Cancel modifications
+
+    /**
+     *    Cancel modifications
+     */
     public void handleCancelClick(MouseEvent mouseEvent) {
         try {
             /*Create Dialog for asking confirmation*/
@@ -211,7 +237,9 @@ public class ModifyProductController implements Initializable {
             ErrorHolder.setText("Can't close window.");
         }
 }
-    /**Handle search by Part ID*/
+    /**
+     * Handle search by Part ID
+     * */
     public void SearchByID(KeyEvent keyEvent) {
         try{
             if(keyEvent.getCode().toString().equals("ENTER")){

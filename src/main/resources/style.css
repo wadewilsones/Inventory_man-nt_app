@@ -1,7 +1,7 @@
 /*Main Screen*/
 
 GridPane{
--fx-padding: 4em;
+-fx-padding: 2.5em;
 }
 
 Button{
@@ -35,7 +35,7 @@ Button{
 }
 
 
-/*Add Part Form*/
+/*PART*/
 
 .AddPartFormHeader{
 -fx-padding:2em 0;
@@ -66,4 +66,14 @@ Button{
 -fx-font-size: 1.2em;
 -fx-fill: #df2935;
 
+}
+
+/* PRODUCT*/
+
+.AttachPartBtn{
+-fx-border-radius: 5px;
+-fx-padding: 5px;
+-fx-border-insets: 5px;
+-fx-border-color: #D4D4D4;
+-fx-background-insets: 5px;
 }

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"inventory.magnt","l":"functionality"},{"m":"inventory.magnt","l":"gui.controllers"},{"m":"inventory.magnt","l":"gui.mainform"}];updateSearchResults();

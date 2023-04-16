@@ -6,7 +6,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-/**This is a main starter*/
+/**
+ * This is a main starter
+ * */
 public class MainForm extends Application {
 
     public static void main(String[] args) {
@@ -18,7 +20,9 @@ public class MainForm extends Application {
     public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getResource("/main_form.fxml"));
 
-/**Loading FXML and setting Scene for UI*/
+/**
+ * Loading FXML and setting Scene for UI
+ * */
 
     primaryStage.setTitle("Inventory Management System");
     primaryStage.setScene(new Scene(root));

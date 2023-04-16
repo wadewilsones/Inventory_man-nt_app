@@ -9,67 +9,87 @@
 <GridPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="gui.controllers.AddProductFormController"
-          prefHeight="1200.0" prefWidth="1300.0">
+          prefHeight="800.0" prefWidth="1300.0">
     <stylesheets>
         <String fx:value="style.css" />
     </stylesheets>
 
-    <HBox GridPane.rowIndex="1" spacing="40" styleClass="AddPartFormHeader" GridPane.columnIndex="1">
-        <Text styleClass="Table_Headers" >Add Product</Text>
+    <HBox styleClass="AddPartFormHeader" spacing="800" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="2">
+        <Text styleClass="Table_Headers">Add Product</Text>
         <TextField promptText="Search by Part ID/Name" fx:id = "SearchByIDField" onKeyPressed="#SearchByID"></TextField>
     </HBox>
-    <Text fx:id = "ErrorHolder" styleClass="Errors"></Text>
-    <FlowPane GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="AddPartForm">
-        <HBox styleClass="AddPartFormField">
-            <Label>ID</Label>
-            <TextField promptText="Auto Gen-Disabled" disable="true" fx:id="GeneratedID"></TextField>
-        </HBox>
-        <HBox styleClass="AddPartFormField">
-            <Label>Name</Label>
-            <TextField fx:id="name"></TextField>
-        </HBox>
-        <HBox styleClass="AddPartFormField">
-            <Label>Inv</Label>
-            <TextField fx:id="inv"></TextField>
-        </HBox>
-        <HBox styleClass="AddPartFormField">
-            <Label>Price/Cost</Label>
-            <TextField fx:id="price"></TextField>
-        </HBox>
-        <HBox styleClass="AddPartFormField">
-            <Label>Max</Label>
-            <TextField fx:id="max"></TextField>
-            <Label fx:id="fieldMinimum">Min</Label>
-            <TextField fx:id="min"></TextField>
-        </HBox>
-    </FlowPane>
 
-    <FlowPane GridPane.rowIndex="2" GridPane.columnIndex="6">
-        <TableView  styleClass="MainTables" fx:id = "PartTable">
-            <columns>
-                <TableColumn text="Part ID" prefWidth = "100" fx:id = "PartId">
-                </TableColumn>
-                <TableColumn text="Part Name" prefWidth = "120" fx:id = "PartName"></TableColumn>
-                <TableColumn text="Inventory level" prefWidth = "130" fx:id = "PartInv"></TableColumn>
-                <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id = "PartPrice"></TableColumn>
-            </columns>
-        </TableView>
-        <Button onMouseClicked="#handlePartAttach">Add</Button>
-        <TableView  styleClass="MainTables" fx:id="AssociatedPartTable">
-            <columns>
-                <TableColumn text="Part ID" prefWidth = "100" fx:id="AssociatedPartId">
-                </TableColumn>
-                <TableColumn text="Part Name" prefWidth = "120" fx:id="AssociatedPartName"></TableColumn>
-                <TableColumn text="Inventory level" prefWidth = "130" fx:id="AssociatedPartInv"></TableColumn>
-                <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id="AssociatedPartPrice"></TableColumn>
-            </columns>
-        </TableView>
-        <Button onMouseClicked="#handleRemoveAssociatedPart">Remove Associated Part</Button>
-        <HBox spacing="20" GridPane.rowIndex="3" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
-            <Button  onMouseClicked="#handleFormSubmission">Save</Button>
-            <Button onMouseClicked="#handleCancelClick">Cancel</Button>
-        </HBox>
-    </FlowPane>
+    <Text fx:id = "ErrorHolder" styleClass="Errors" GridPane.rowIndex="2"  GridPane.columnIndex="1" GridPane.columnSpan="2"></Text>
+
+    <HBox spacing="40" GridPane.rowIndex="3" GridPane.columnIndex="1" >
+        <FlowPane styleClass="AddPartForm">
+
+            <HBox styleClass="AddPartFormField" spacing="26">
+                <Label>ID</Label>
+                <TextField promptText="Auto Gen-Disabled" disable="true" fx:id="GeneratedID"></TextField>
+            </HBox>
+
+            <HBox styleClass="AddPartFormField">
+                <Label>Name</Label>
+                <TextField fx:id="name"></TextField>
+            </HBox>
+
+            <HBox styleClass="AddPartFormField"  spacing="18">
+                <Label>Inv</Label>
+                <TextField fx:id="inv"></TextField>
+            </HBox>
+
+            <HBox styleClass="AddPartFormField" spacing="-28">
+                <Label>Price/Cost</Label>
+                <TextField fx:id="price"></TextField>
+            </HBox>
+
+            <HBox styleClass="AddPartFormField" spacing="9">
+                <Label>Max</Label>
+                <TextField fx:id="max"></TextField>
+                <Label fx:id="fieldMinimum">Min</Label>
+                <TextField fx:id="min"></TextField>
+            </HBox>
+
+        </FlowPane>
+
+        <FlowPane>
+            <TableView  styleClass="MainTables" fx:id = "PartTable">
+                <columns>
+                    <TableColumn text="Part ID" prefWidth = "100" fx:id = "PartId">
+                    </TableColumn>
+                    <TableColumn text="Part Name" prefWidth = "120" fx:id = "PartName"></TableColumn>
+                    <TableColumn text="Inventory level" prefWidth = "130" fx:id = "PartInv"></TableColumn>
+                    <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id = "PartPrice"></TableColumn>
+                </columns>
+            </TableView>
+
+            <Button onMouseClicked="#handlePartAttach" styleClass="AttachPartBtn" fx:id="AttachPartBtn">Add</Button>
+
+            <TableView  styleClass="MainTables" fx:id="AssociatedPartTable" >
+                <columns>
+                    <TableColumn text="Part ID" prefWidth = "100" fx:id="AssociatedPartId" id="AssociatedPartId">
+                    </TableColumn>
+                    <TableColumn text="Part Name" prefWidth = "120" fx:id="AssociatedPartName"></TableColumn>
+                    <TableColumn text="Inventory level" prefWidth = "130" fx:id="AssociatedPartInv"></TableColumn>
+                    <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id="AssociatedPartPrice"></TableColumn>
+                </columns>
+            </TableView>
+            <BorderPane>
+                <top>
+                    <Button onMouseClicked="#handleRemoveAssociatedPart" styleClass="AttachPartBtn" BorderPane.alignment="TOP_RIGHT">Remove Associated Part</Button>
+                </top>
+                <bottom>
+                    <HBox spacing="25"  BorderPane.alignment="BOTTOM_RIGHT">
+                        <Button  onMouseClicked="#handleFormSubmission" styleClass="AttachPartBtn">Save</Button>
+                        <Button onMouseClicked="#handleCancelClick" styleClass="AttachPartBtn">Cancel</Button>
+                    </HBox>
+                </bottom>
+
+            </BorderPane>
+        </FlowPane>
+
+    </HBox>
 
 
 </GridPane>

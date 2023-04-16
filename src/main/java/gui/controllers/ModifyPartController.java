@@ -11,17 +11,20 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import static functionality.Inventory.getAllParts;
 import static gui.mainform.MainForm_controller.*;
 
+
+/**
+ * This controller class is used in ModifyPart FXML, to handle Events and etc
+ */
 public class ModifyPartController implements Initializable {
 
 
-    /*Input fields*/
+    /**
+     * Input fields
+     * */
     @FXML
     public TextField GeneratedID;
     @FXML

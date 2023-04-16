@@ -9,18 +9,12 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static functionality.Inventory.getAllParts;
-import static gui.mainform.MainForm_controller.*;
-
-
-/**To use variables values in FXML*/
-/**RUNTIME ERROR occurred when initialize function was empty,
- * so was added necessary initial settings such as LabelData */
-
+/**
+ * This controller class is used in AddPart FXML, to handle Events
+ */
 public class AddPartFormController implements Initializable {
 
     @FXML
@@ -34,7 +28,9 @@ public class AddPartFormController implements Initializable {
     @FXML
     public Text ErrorHolder;
 
-    /*Input fields*/
+    /**
+     * Input fields
+     * */
 
     @FXML
     public TextField name;
@@ -50,6 +46,9 @@ public class AddPartFormController implements Initializable {
     public TextField additionalInfo;
 
 
+    /**
+     * The method used when radio button toggled
+     * */
     public void setLabelData(boolean isOutsource) {
         if(isOutsource){
             LabelData.setText("Company Name");
@@ -59,7 +58,9 @@ public class AddPartFormController implements Initializable {
         }
     }
 
-    /**Assigning Initial Values for changing components */
+    /**
+     * Assigning Initial Values for changing components
+     * */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -71,7 +72,9 @@ public class AddPartFormController implements Initializable {
 
     }
 
-    /**RadioButton toggle changes*/
+    /**
+     * RadioButton toggle changes
+     * */
     public void HandleRadioOutButtonChange(javafx.scene.input.MouseEvent mouseEvent) {
         setLabelData(true);
     }
@@ -79,13 +82,17 @@ public class AddPartFormController implements Initializable {
         setLabelData(false);
     }
 
-    /**Close opened window*/
+    /**
+     * Close opened window
+     * */
     public void handleCancelClick(MouseEvent mouseEvent) {
 
         MainForm_controller.getStage().close();
     }
 
-    /**Adding a new Part*/
+    /**
+     * Adding a new Part
+     * */
     public void handleFormSubmission(MouseEvent mouseEvent) {
 
         /*Get input and Validate it*/

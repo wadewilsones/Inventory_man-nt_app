@@ -15,37 +15,44 @@
             <String fx:value="style.css" />
         </stylesheets>
 
-        <HBox GridPane.rowIndex="1" spacing="40" styleClass="AddPartFormHeader" GridPane.columnIndex="1">
+        <HBox  GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="2" styleClass="AddPartFormHeader">
             <Text styleClass="Table_Headers" >Modify Product</Text>
             <TextField promptText="Search by Part ID/Name" fx:id = "SearchByIDField" onKeyPressed="#SearchByID"></TextField>
         </HBox>
-        <Text fx:id = "ErrorHolder" styleClass="Errors" GridPane.columnIndex="1" GridPane.columnSpan="4"></Text>
-        <FlowPane GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="AddPartForm">
-            <HBox styleClass="AddPartFormField">
+        <Text fx:id = "ErrorHolder" styleClass="Errors" GridPane.rowIndex="2"  GridPane.columnIndex="1" GridPane.columnSpan="2"></Text>
+
+    <HBox  spacing="40" GridPane.rowIndex="3" GridPane.columnIndex="1" >
+        <FlowPane  styleClass="AddPartForm">
+            <HBox styleClass="AddPartFormField" spacing="26">
                 <Label>ID</Label>
                 <TextField promptText="Auto Gen-Disabled" disable="true" fx:id="GeneratedID"></TextField>
             </HBox>
+
             <HBox styleClass="AddPartFormField">
                 <Label>Name</Label>
                 <TextField fx:id="name"></TextField>
             </HBox>
-            <HBox styleClass="AddPartFormField">
+
+            <HBox styleClass="AddPartFormField" spacing="18">
                 <Label>Inv</Label>
                 <TextField fx:id="inv"></TextField>
             </HBox>
-            <HBox styleClass="AddPartFormField">
+
+            <HBox styleClass="AddPartFormField" spacing="-28">
                 <Label>Price/Cost</Label>
                 <TextField fx:id="price"></TextField>
             </HBox>
-            <HBox styleClass="AddPartFormField">
+
+            <HBox styleClass="AddPartFormField" spacing="9">
                 <Label>Max</Label>
                 <TextField fx:id="max"></TextField>
                 <Label fx:id="fieldMinimum">Min</Label>
                 <TextField fx:id="min"></TextField>
             </HBox>
+
         </FlowPane>
 
-        <FlowPane GridPane.rowIndex="2" GridPane.columnIndex="6">
+        <FlowPane>
             <TableView  styleClass="MainTables" fx:id = "PartTable">
                 <columns>
                     <TableColumn text="Part ID" prefWidth = "100" fx:id = "PartId">
@@ -55,7 +62,9 @@
                     <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id = "PartPrice"></TableColumn>
                 </columns>
             </TableView>
-            <Button onMouseClicked="#handlePartAttach">Add</Button>
+
+            <Button onMouseClicked="#handlePartAttach" styleClass="AttachPartBtn">Add</Button>
+
             <TableView  styleClass="MainTables" fx:id="AssociatedPartTable">
                 <columns>
                     <TableColumn text="Part ID" prefWidth = "100" fx:id="AssociatedPartId">
@@ -65,12 +74,21 @@
                     <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id="AssociatedPartPrice"></TableColumn>
                 </columns>
             </TableView>
-            <Button onMouseClicked="#handleRemoveAssociatedPart">Remove Associated Part</Button>
-            <HBox spacing="20" GridPane.rowIndex="3" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
-                <Button  onMouseClicked="#handleFormSubmission">Save</Button>
-                <Button onMouseClicked="#handleCancelClick">Cancel</Button>
-            </HBox>
+            <BorderPane>
+                <top>
+                    <Button onMouseClicked="#handleRemoveAssociatedPart" BorderPane.alignment="TOP_RIGHT" styleClass="AttachPartBtn">Remove Associated Part</Button>
+                </top>
+                <bottom>
+                    <HBox  BorderPane.alignment="BOTTOM_RIGHT">
+                        <Button  onMouseClicked="#handleFormSubmission" styleClass="AttachPartBtn">Save</Button>
+                        <Button onMouseClicked="#handleCancelClick" styleClass="AttachPartBtn">Cancel</Button>
+                    </HBox>
+                </bottom>
+            </BorderPane>
+
         </FlowPane>
+    </HBox>
+
 
 
     </GridPane>

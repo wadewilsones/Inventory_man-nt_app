@@ -23,7 +23,7 @@
             <FlowPane GridPane.rowIndex="2" >
                 <HBox spacing="50">
                     <FlowPane styleClass="Table_Container">
-                        <HBox spacing="290" alignment="CENTER" styleClass="MainTable_Header">
+                        <HBox spacing="295" alignment="CENTER" styleClass="MainTable_Header">
                             <Label styleClass="Table_Headers">Parts</Label>
                             <TextField promptText="Press Enter to search by Part ID/Name" id="SearchByIDField" fx:id = "SearchByIDField" onKeyPressed="#SearchByID"></TextField>
                         </HBox>
@@ -35,15 +35,15 @@
                                 <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id="PartPrice"></TableColumn>
                             </columns>
                         </TableView>
-                        <HBox spacing="10" styleClass="MainGroupBtns" GridPane.halignment="RIGHT">
+                        <HBox spacing="10" styleClass="MainGroupBtns" alignment="CENTER">
                             <Button fx:id="addPartBtn" onMouseClicked="#handleAddPartClick">Add</Button>
                             <Button fx:id="modifyPartBtn" onMouseClicked="#handleModifyPartClick">Modify</Button>
                             <Button fx:id="deletePart" onMouseClicked="#handleDeletePart">Delete</Button>
                         </HBox>
                     </FlowPane>
 
-                    <FlowPane  styleClass="Table_Container">
-                        <HBox spacing="260" alignment="CENTER" styleClass="MainTable_Header">
+                    <FlowPane  styleClass="Table_Container" >
+                        <HBox spacing="268" alignment="CENTER" styleClass="MainTable_Header" >
                             <Label  styleClass="Table_Headers">Products</Label>
                             <TextField promptText="Press Enter to search by Product ID/Name"  fx:id ="productSearchField" onKeyPressed="#SearchProduct"></TextField>
                         </HBox>
@@ -55,11 +55,11 @@
                             <TableColumn text="Inventory level" prefWidth = "130" fx:id="ProdInv"></TableColumn>
                             <TableColumn text="Price/Cost per Unit" prefWidth = "150" fx:id="ProdPrice"></TableColumn>
                         </columns>
-
                     </TableView>
-                        <HBox  spacing="260" alignment="CENTER" styleClass="MainGroupBtns" >
-                            <Button fx:id="addProductBtn" onMouseClicked="#handleAddProductClick">Add</Button>
-                            <Button fx:id="modifyProductBtn" onMouseClicked="#handleModifyProductClick">Modify</Button>
+
+                        <HBox styleClass="MainGroupBtns" spacing="10">
+                            <Button fx:id="addProductBtn" onMouseClicked="#handleAddProductClick" >Add</Button>
+                            <Button fx:id="modifyProductBtn" onMouseClicked="#handleModifyProductClick" >Modify</Button>
                             <Button onMouseClicked="#handleProductDeletion">Delete</Button>
                         </HBox>
                     </FlowPane>

@@ -29,7 +29,7 @@
     <Text fx:id = "ErrorHolder" styleClass="Errors"></Text>
     <FlowPane GridPane.rowIndex="2" styleClass="AddPartForm">
 
-        <HBox styleClass="AddPartFormField" id="#IdField">
+        <HBox styleClass="AddPartFormField" id="#IdField"  spacing="26">
             <Label>ID</Label>
             <TextField promptText="Auto Gen-Disabled" fx:id="GeneratedID" disable="true"></TextField>
         </HBox>
@@ -37,21 +37,21 @@
             <Label>Name</Label>
             <TextField fx:id="name"></TextField>
         </HBox>
-        <HBox styleClass="AddPartFormField">
+        <HBox styleClass="AddPartFormField" spacing="18">
             <Label>Inv</Label>
             <TextField fx:id="inv"></TextField>
         </HBox>
-        <HBox styleClass="AddPartFormField" spacing="5">
+        <HBox styleClass="AddPartFormField" spacing="-28">
             <Label>Price/Cost</Label>
             <TextField fx:id="price"></TextField>
         </HBox>
-        <HBox styleClass="AddPartFormField">
+        <HBox styleClass="AddPartFormField" spacing="9">
             <Label>Max</Label>
             <TextField fx:id="max"></TextField>
             <Label fx:id="fieldMinimum">Min</Label>
             <TextField fx:id="min"></TextField>
         </HBox>
-        <HBox styleClass="AddPartFormField" spacing="20">
+        <HBox styleClass="AddPartFormField" spacing="25">
             <Text fx:id = "LabelData"></Text>
             <TextField fx:id="additionalInfo"></TextField>
         </HBox>
