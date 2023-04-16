@@ -7,7 +7,15 @@ import javafx.stage.Stage;
 
 
 /**
- * This is a main starter
+ * This is a Main program starter
+ * Path to Javadoc files: inventory_magnt/javadoc
+ *
+ * There were a few runtime Exceptions, that were connected with NullPointers.
+ * Search for the product did cause the exception because the method getAllProducts() was used on a null Product object.
+ * Was fixed by initialization of the product before call methods.
+ *
+ *
+ * For future program enhancement, binding it with a database to save all entered data was recommended.
  * */
 public class MainForm extends Application {
 

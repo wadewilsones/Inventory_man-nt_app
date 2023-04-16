@@ -29,6 +29,7 @@ public class Inventory {
      */
 
     static public ObservableList<Product> getAllProducts(){
+
         return allProducts;
     };
 
@@ -37,6 +38,7 @@ public class Inventory {
      */
 
     static public void addPart(Part newPart){
+
         allParts.add(newPart);
     }
 
@@ -45,6 +47,7 @@ public class Inventory {
      */
 
     static public void addProduct(Product newProduct){
+
         allProducts.add(newProduct);
     }
 
@@ -53,6 +56,7 @@ public class Inventory {
      */
 
     static public  void updatePart(int index, Part selectedPart){
+
         allParts.set(index, selectedPart);
     }
 

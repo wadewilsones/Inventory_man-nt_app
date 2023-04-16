@@ -221,6 +221,7 @@ public class AddProductFormController implements Initializable{
      * Handle search by Part ID
      * */
     public void SearchByID(KeyEvent keyEvent) {
+        ErrorHolder.setText("");
         try{
             if(keyEvent.getCode().toString().equals("ENTER")){
                 /**Is search by Index*/

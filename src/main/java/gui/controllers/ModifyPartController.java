@@ -48,7 +48,8 @@ public class ModifyPartController implements Initializable {
     public String InitialLabelData; // for checking if Radio Buttons were switched
     @FXML
     public RadioButton InHouse;
-
+    @FXML
+    public Text ErrorHolder;
     public boolean isOutsourcePart;
 
     /**
@@ -63,7 +64,6 @@ public class ModifyPartController implements Initializable {
             isOutsourcePart = false;
         }
     }
-
 
     /**
      * handle Radio Button Change in Modify Form
@@ -109,33 +109,34 @@ public class ModifyPartController implements Initializable {
      * Modifying and saving Part
      */
     public void handleFormSubmission(MouseEvent mouseEvent) {
-        System.out.println("Submit...");
+        ErrorHolder.setText("");
         /*Get input and Validate it*/
-        Validation validateInput = new Validation(name.getText(), price.getText(), inv.getText(), min.getText(), max.getText(), additionalInfo.getText());
-        if (validateInput.getValidationValue()) {
+        try{
+            Validation validateInput = new Validation(name.getText(), price.getText(), inv.getText(), min.getText(), max.getText(), additionalInfo.getText());
+            if (validateInput.getValidationValue()) {
 
-            /*Converting input to right type*/
-            double priceConverted = Double.parseDouble(price.getText());
-            int invConverted = Integer.parseInt(inv.getText());
-            int minConverted = Integer.parseInt(min.getText());
-            int maxConverted = Integer.parseInt(max.getText());
+                /*Converting input to right type*/
+                double priceConverted = Double.parseDouble(price.getText());
+                int invConverted = Integer.parseInt(inv.getText());
+                int minConverted = Integer.parseInt(min.getText());
+                int maxConverted = Integer.parseInt(max.getText());
 
-            /*Get is Outsource or not*/
-            if (!isOutsourcePart) {
-                int additionalInfoConverted = Integer.parseInt(additionalInfo.getText());
-                InHouse updatePart = new InHouse(Integer.valueOf(String.valueOf(GeneratedID.getText())), name.getText(), priceConverted, invConverted, minConverted, maxConverted, additionalInfoConverted);
-                Inventory.updatePart(Inventory.getAllParts().indexOf(selectedPart), updatePart);
-            } else {
-                Outsourced updateOutPart = new Outsourced(Integer.valueOf(String.valueOf(GeneratedID.getText())), name.getText(), priceConverted, invConverted, minConverted, maxConverted, additionalInfo.getText());
-                Inventory.updatePart(Inventory.getAllParts().indexOf(selectedPart), updateOutPart);
+                /*Get is Outsource or not*/
+                if (!isOutsourcePart) {
+                    int additionalInfoConverted = Integer.parseInt(additionalInfo.getText());
+                    InHouse updatePart = new InHouse(Integer.valueOf(String.valueOf(GeneratedID.getText())), name.getText(), priceConverted, invConverted, minConverted, maxConverted, additionalInfoConverted);
+                    Inventory.updatePart(Inventory.getAllParts().indexOf(selectedPart), updatePart);
+                } else {
+                    Outsourced updateOutPart = new Outsourced(Integer.valueOf(String.valueOf(GeneratedID.getText())), name.getText(), priceConverted, invConverted, minConverted, maxConverted, additionalInfo.getText());
+                    Inventory.updatePart(Inventory.getAllParts().indexOf(selectedPart), updateOutPart);
+                }
             }
+            /*Close form after click*/
+            MainForm_controller.getStage().close();}
+        catch(Exception e){
+            ErrorHolder.setText("Can't update Part!" + e.getMessage());
         }
-
-    /*Close form after click*/
-            MainForm_controller.getStage().close();
-
 }
-
 
     /**Close opened window*/
     public void handleCancelClick(MouseEvent mouseEvent) {

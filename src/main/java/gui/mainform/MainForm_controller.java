@@ -101,6 +101,7 @@ public class MainForm_controller implements Initializable {
      * Handle search by Part ID
      * */
     public void SearchByID(KeyEvent keyEvent) {
+        ErrorHolder.setText("");
         try{
             if(keyEvent.getCode().toString().equals("ENTER")){
                 /**Is search by Index*/
@@ -257,7 +258,6 @@ public class MainForm_controller implements Initializable {
         ErrorHolder.setText("");
         /*Get selected TableView Field*/
 
-
         try{
             /**Get  values from Selected Record*/
             selectedProduct = ProductTable.getSelectionModel().getSelectedItem();
@@ -330,6 +330,7 @@ public class MainForm_controller implements Initializable {
      * Search Product by ID/Name
      * */
     public void SearchProduct(KeyEvent keyEvent) {
+        ErrorHolder.setText("");
         try{
             if(keyEvent.getCode().toString().equals("ENTER")){
                 /**Is search by Index*/

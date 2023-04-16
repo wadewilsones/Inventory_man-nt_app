@@ -94,7 +94,7 @@ public class AddPartFormController implements Initializable {
      * Adding a new Part
      * */
     public void handleFormSubmission(MouseEvent mouseEvent) {
-
+        ErrorHolder.setText("");
         /*Get input and Validate it*/
         Validation validateInput = new Validation(name.getText(), price.getText(), inv.getText(), min.getText(), max.getText(), additionalInfo.getText());
         if(validateInput.getValidationValue()){
